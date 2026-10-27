@@ -842,35 +842,32 @@
     <div class="flex items-center justify-end gap-1.5 sm:gap-2 justify-self-end shrink-0">
       <!-- Workspace-only tools -->
       <div id="workspaceActionBtns" class="hidden items-center gap-1.5">
-        <button onclick="openQuizModal()" class="px-2.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer" title="Luyện Thi Trắc Nghiệm">
-          <span class="hidden xl:inline" data-i18n="btn_quiz">Trắc nghiệm</span>
-          <span class="xl:hidden">🎯</span>
+        <button onclick="openQuizModal()" class="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap" title="Luyện Thi Trắc Nghiệm">
+          <span data-i18n="btn_quiz">Trắc nghiệm</span>
         </button>
-        <button onclick="openModal('reportModal')" class="hidden md:flex px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-zinc-900 text-slate-700 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium items-center gap-1 transition-colors cursor-pointer">
+        <button onclick="openModal('reportModal')" class="hidden md:inline-flex px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-zinc-900 text-slate-700 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium items-center transition-colors cursor-pointer whitespace-nowrap">
           <span data-i18n="btn_report">Báo cáo</span>
         </button>
       </div>
 
       <!-- User Guide & Glossary Modal -->
-      <button onclick="openModal('guideModal')" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer" title="Hướng dẫn & Từ điển Thuật ngữ">
-        <span>📖</span>
-        <span class="hidden 2xl:inline" data-i18n="btn_guide">Sổ tay</span>
+      <button onclick="openModal('guideModal')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" title="Hướng dẫn & Từ điển Thuật ngữ">
+        <span data-i18n="btn_guide">Sổ tay</span>
       </button>
 
       <!-- Light / Dark Theme Toggle -->
-      <button onclick="toggleTheme()" id="themeToggleBtn" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer" title="Chuyển đổi giao diện Sáng / Tối">
-        <span id="themeToggleIcon">☀️</span>
-        <span id="themeToggleLabel" class="hidden sm:inline" data-i18n="theme_light">Sáng</span>
+      <button onclick="toggleTheme()" id="themeToggleBtn" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" title="Chuyển đổi giao diện Sáng / Tối">
+        <span id="themeToggleLabel" data-i18n="theme_light">Sáng</span>
       </button>
 
       <!-- Bilingual VI / EN Toggle -->
-      <button onclick="toggleLanguage()" id="langToggleBtn" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-medium transition-colors cursor-pointer" title="Chuyển đổi Ngôn ngữ Tiếng Việt / Tiếng Anh">
-        🇻🇳 VI
+      <button onclick="toggleLanguage()" id="langToggleBtn" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-800 dark:text-zinc-200 border border-slate-300 dark:border-white/15 text-xs font-semibold font-mono transition-colors cursor-pointer whitespace-nowrap" title="Chuyển đổi Ngôn ngữ Tiếng Việt / Tiếng Anh">
+        VI
       </button>
 
       <!-- API Key Settings -->
-      <button onclick="openModal('apiKeyModal')" class="p-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-zinc-300 border border-slate-300 dark:border-white/15 text-xs transition-colors cursor-pointer" title="Cài đặt Gemini API Key">
-        🔑
+      <button onclick="openModal('apiKeyModal')" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-zinc-300 border border-slate-300 dark:border-white/15 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" title="Cài đặt Gemini API Key">
+        API
       </button>
 
       <!-- Vesper Solid Liquid-Glass Header CTA -->
@@ -932,7 +929,7 @@
 
         <!-- Lede Paragraph -->
         <p class="vesper-lede appear appear--soft" style="--d: 0.64s" data-i18n="hero_desc">
-          Thực hành trọn vẹn 36 bài thí nghiệm trọng tâm THPT Việt Nam và Phòng Sandbox Tự Do đa môn. Tương tác vật lý theo thời gian thực trên bàn thí nghiệm 2D và mô hình 3D WebGL xoay 360°.
+          Thực hành trọn vẹn 36 bài thí nghiệm trọng tâm THPT Việt Nam và Phòng Sandbox Tự Do đa môn. Tương tác vật lý theo thời gian thực trên bàn thí nghiệm 2D, mô hình 3D WebGL xoay 360° và chế độ Thực tế tăng cường (AR).
         </p>
 
         <!-- Dual Liquid-Glass CTA Row -->
@@ -987,8 +984,8 @@
             </svg>
           </span>
           <div class="vesper-stat-text">
-            <div class="vesper-stat-title" data-i18n="stat_2_title">11 Bộ Máy Mô Phỏng 2D & 3D WebGL</div>
-            <div class="vesper-stat-sub" data-i18n="stat_2_sub">Tương tác vật lý 60 FPS & Soi kính lúp Ion</div>
+            <div class="vesper-stat-title" data-i18n="stat_2_title">11 Bộ Máy Mô Phỏng 2D, 3D & AR</div>
+            <div class="vesper-stat-sub" data-i18n="stat_2_sub">Tương tác vật lý 60 FPS & Chiếu mô hình AR</div>
           </div>
         </div>
 
@@ -1054,8 +1051,8 @@
               oninput="renderLibraryGrid()"
             />
           </div>
-          <button onclick="launchDIYFreeSandbox()" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer whitespace-nowrap">
-            <span data-i18n="lib_sandbox_btn">🧪 Mở DIY Sandbox (Hóa·Lý·Sinh)</span>
+          <button onclick="launchDIYFreeSandbox()" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-sm transition-all cursor-pointer whitespace-nowrap">
+            <span data-i18n="lib_sandbox_btn">Mở DIY Sandbox (Hóa · Lý · Sinh)</span>
           </button>
         </div>
       </div>
@@ -1095,86 +1092,84 @@
   </section>
 
   <!-- ===================================================================
-       5. VIEW 3: DYNAMIC WORKBENCH (RESPONSIVE MULTI-ENGINE WORKSPACE)
+       5. VIEW 3: DYNAMIC WORKBENCH (CLEAN ORGANIZED 3-COLUMN LAYOUT + AR)
        =================================================================== -->
-  <main id="view-workspace" class="hidden flex-1 flex-col lg:flex-row overflow-hidden p-2 sm:p-3 gap-2.5 min-h-0 h-[calc(100vh-4rem)] bg-slate-100 dark:bg-slate-950 view-animate-in">
+  <main id="view-workspace" class="hidden flex-1 flex-col lg:flex-row overflow-hidden p-2.5 sm:p-3.5 gap-3 min-h-0 h-[calc(100vh-4rem)] bg-slate-100 dark:bg-slate-950 view-animate-in">
 
     <!-- MOBILE/TABLET RESPONSIVE PANEL SWITCHER (< 1024px) -->
     <div id="mobileWorkspaceTabs" class="flex lg:hidden items-center gap-1 bg-white dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shrink-0">
       <button onclick="setMobileWorkspacePane('stage')" id="mobPaneBtn-stage" class="flex-1 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white cursor-pointer" data-i18n="mob_pane_stage">
-        🔬 Bàn Thí Nghiệm
+        Bàn Thí Nghiệm
       </button>
       <button onclick="setMobileWorkspacePane('controls')" id="mobPaneBtn-controls" class="flex-1 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="mob_pane_controls">
-        🧰 Tủ Đồ & Điều Khiển
+        Tủ Đồ & Điều Khiển
       </button>
       <button onclick="setMobileWorkspacePane('ai')" id="mobPaneBtn-ai" class="flex-1 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="mob_pane_ai">
-        🤖 Gia Sư AI
+        Gia Sư AI
       </button>
     </div>
 
     <!-- 1. LEFT SIDEBAR: EXPERIMENT CONTROLS + MULTI-SUBJECT DIY SANDBOX -->
-    <aside id="leftSidebar" class="w-full lg:w-80 shrink-0 h-full flex flex-col bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-xs overflow-hidden">
+    <aside id="leftSidebar" class="w-full lg:w-[310px] xl:w-80 shrink-0 h-full flex flex-col bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 shadow-xs overflow-hidden">
       <!-- Active Experiment Info Header -->
-      <div class="pb-2 mb-2 border-b border-slate-200 dark:border-slate-800 shrink-0">
-        <div class="flex items-center justify-between gap-1.5">
-          <span id="activeSubjTag" class="text-[10px] font-mono font-bold uppercase text-sky-600 dark:text-sky-400">HÓA 11 · ENGINE B</span>
-          <button onclick="navigateToView('library')" class="px-2 py-0.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-sky-700 dark:text-sky-300 border border-slate-300 dark:border-slate-700 text-[10px] font-bold transition-colors cursor-pointer flex items-center gap-1">
-            <span data-i18n="ws_change_lesson">⇄ Đổi Bài Lab</span>
+      <div class="pb-2.5 mb-2.5 border-b border-slate-200 dark:border-slate-800 shrink-0">
+        <div class="flex items-center justify-between gap-2">
+          <span id="activeSubjTag" class="text-[10px] font-mono font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 truncate">HÓA 11 · ENGINE B</span>
+          <button onclick="navigateToView('library')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[10px] font-bold transition-colors cursor-pointer shrink-0">
+            <span data-i18n="ws_change_lesson">Đổi bài lab</span>
           </button>
         </div>
-        <div id="activeExpNameLabel" class="text-xs font-extrabold text-slate-900 dark:text-white mt-1 leading-snug line-clamp-2">Chuẩn độ Axit mạnh - Bazơ mạnh</div>
+        <div id="activeExpNameLabel" class="text-xs font-extrabold text-slate-900 dark:text-white mt-1.5 leading-snug line-clamp-2">Chuẩn độ Axit mạnh - Bazơ mạnh</div>
       </div>
 
-      <!-- 3 Clean Left Tabs: [🎛️ Điều khiển] [🧰 Tủ đồ DIY] [📊 Đồ thị] -->
-      <div class="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 mb-2.5 shrink-0">
+      <!-- 3 Clean Left Tabs: [Thông số] [Sandbox DIY] [Đồ thị] -->
+      <div class="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 mb-3 shrink-0">
         <button onclick="switchLeftTab('controls')" id="leftTabBtn-controls" class="py-1.5 rounded-lg text-[11px] font-bold transition-all bg-sky-600 text-white shadow-xs cursor-pointer" data-i18n="tab_controls">
-          🎛️ Thông số
+          Thông số
         </button>
         <button onclick="switchLeftTab('dock')" id="leftTabBtn-dock" class="py-1.5 rounded-lg text-[11px] font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 cursor-pointer" data-i18n="tab_dock">
-          🧰 Sandbox DIY
+          Sandbox DIY
         </button>
         <button onclick="switchLeftTab('telemetry')" id="leftTabBtn-telemetry" class="py-1.5 rounded-lg text-[11px] font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 cursor-pointer" data-i18n="tab_chart">
-          📊 Đồ thị
+          Đồ thị
         </button>
       </div>
 
       <!-- TAB 1: DYNAMIC CONTROLS FOR ACTIVE SUB-ENGINE -->
-      <div id="leftTabPanel-controls" class="flex-1 overflow-y-auto space-y-2.5 pr-0.5">
-        <div id="leftControlsContainer" class="space-y-2.5"></div>
+      <div id="leftTabPanel-controls" class="flex-1 overflow-y-auto space-y-3 pr-0.5">
+        <div id="leftControlsContainer" class="space-y-3"></div>
 
-        <!-- Microscopic Ion View (NOBOOK X-Ray) -->
-        <div class="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold text-slate-700 dark:text-slate-300" data-i18n="lbl_xray_loupe">🔍 Kính lúp Vi mô / Vector</span>
-            <button onclick="toggleXRayMode()" id="xrayBtn" class="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[10px] font-mono font-bold text-sky-600 dark:text-sky-400 border border-slate-300 dark:border-slate-700 cursor-pointer">
-              Vi mô: OFF
-            </button>
-          </div>
+        <!-- Microscopic Ion / Vector View Toggle -->
+        <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300" data-i18n="lbl_xray_loupe">Chế độ Soi Vi mô / Vector</span>
+          <button onclick="toggleXRayMode()" id="xrayBtn" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 text-[10px] font-mono font-bold text-sky-600 dark:text-sky-400 border border-slate-300 dark:border-slate-700 cursor-pointer">
+            OFF
+          </button>
         </div>
       </div>
 
       <!-- TAB 2: MULTI-SUBJECT DIY SANDBOX (CHEMISTRY + PHYSICS + BIOLOGY) -->
-      <div id="leftTabPanel-dock" class="hidden flex-1 flex-col overflow-hidden space-y-2">
+      <div id="leftTabPanel-dock" class="hidden flex-1 flex-col overflow-hidden space-y-2.5">
         <!-- Multi-Subject Sandbox Switcher (Hóa · Lý · Sinh) -->
         <div class="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shrink-0">
-          <button onclick="setSandboxSubject('CHEM')" id="sbSubjBtn-CHEM" class="py-1 rounded-lg text-[11px] font-bold bg-rose-600 text-white cursor-pointer" data-i18n="sb_chem">🧪 Hóa Học</button>
-          <button onclick="setSandboxSubject('PHYS')" id="sbSubjBtn-PHYS" class="py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="sb_phys">⚡ Vật Lý</button>
-          <button onclick="setSandboxSubject('BIO')" id="sbSubjBtn-BIO" class="py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="sb_bio">🧬 Sinh Học</button>
+          <button onclick="setSandboxSubject('CHEM')" id="sbSubjBtn-CHEM" class="py-1.5 rounded-lg text-[11px] font-bold bg-sky-600 text-white cursor-pointer" data-i18n="sb_chem">Hóa Học</button>
+          <button onclick="setSandboxSubject('PHYS')" id="sbSubjBtn-PHYS" class="py-1.5 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="sb_phys">Vật Lý</button>
+          <button onclick="setSandboxSubject('BIO')" id="sbSubjBtn-BIO" class="py-1.5 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="sb_bio">Sinh Học</button>
         </div>
 
         <!-- Chemistry-Only Apparatus Target & Vessel Status (Strictly Hidden in Physics & Biology) -->
         <div id="chemOnlyTargetBox" class="space-y-2 shrink-0">
           <!-- Target / Apparatus Mode Selector -->
           <div id="sandboxTargetSelectorBar" class="grid grid-cols-2 gap-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 shrink-0">
-            <button onclick="setSandboxTarget('beaker')" id="targetBtn-beaker" class="py-1 rounded-lg text-[11px] font-bold bg-sky-600 text-white shadow-xs cursor-pointer" data-i18n="target_beaker">🧪 Cốc Thủy Tinh</button>
-            <button onclick="setSandboxTarget('tissue')" id="targetBtn-tissue" class="py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="target_tissue">✋ Mô Da Người</button>
+            <button onclick="setSandboxTarget('beaker')" id="targetBtn-beaker" class="py-1 rounded-lg text-[11px] font-bold bg-sky-600 text-white shadow-xs cursor-pointer" data-i18n="target_beaker">Cốc Thủy Tinh</button>
+            <button onclick="setSandboxTarget('tissue')" id="targetBtn-tissue" class="py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 cursor-pointer" data-i18n="target_tissue">Mô Da Người</button>
           </div>
 
           <!-- Active Vessel State Widget -->
-          <div id="activeBeakerStatusWidget" class="p-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shrink-0 space-y-1">
+          <div id="activeBeakerStatusWidget" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shrink-0 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider" data-i18n="lbl_in_vessel">Trạng thái bàn Lab:</span>
-              <button onclick="clearVesselReagents()" class="text-[10px] text-rose-600 dark:text-rose-400 hover:underline font-bold cursor-pointer" data-i18n="btn_wash_vessel">↺ Làm sạch</button>
+              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider" data-i18n="lbl_in_vessel">Chất trong bình:</span>
+              <button onclick="clearVesselReagents()" class="text-[10px] text-rose-600 dark:text-rose-400 hover:underline font-bold cursor-pointer" data-i18n="btn_wash_vessel">Làm sạch</button>
             </div>
             <div id="activeReagentPillsContainer" class="flex flex-wrap gap-1 min-h-[20px]">
               <span class="text-[10px] text-slate-500 italic">Bình đang trống (Chọn chất bên dưới)</span>
@@ -1183,17 +1178,17 @@
         </div>
 
         <!-- Quick 1-Click Presets (Dynamic per Subject: Chem / Phys / Bio) -->
-        <div class="shrink-0 space-y-1">
-          <div class="flex items-center justify-between text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
-            <span id="quickSampleHeaderLabel" data-i18n="lbl_quick_reactions">⚡ Thí Nghiệm 1-Chạm:</span>
-            <span class="text-[9px] text-slate-500 font-normal" data-i18n="lbl_instant_run">Chạy ngay</span>
+        <div class="shrink-0 space-y-1.5">
+          <div class="flex items-center justify-between text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+            <span id="quickSampleHeaderLabel" data-i18n="lbl_quick_reactions">Thí Nghiệm Mẫu 1-Chạm:</span>
+            <span class="text-[9px] text-sky-600 dark:text-sky-400 font-semibold" data-i18n="lbl_instant_run">Chạy ngay</span>
           </div>
-          <div class="grid grid-cols-2 gap-1 max-h-32 overflow-y-auto pr-0.5" id="sandboxQuickPresetsGrid">
+          <div class="grid grid-cols-2 gap-1.5 max-h-28 overflow-y-auto pr-0.5" id="sandboxQuickPresetsGrid">
             <!-- Populated dynamically by renderSandboxQuickPresets() for CHEM, PHYS, BIO -->
           </div>
         </div>
 
-        <div id="dockCatalogHeaderLabel" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider shrink-0 pt-0.5" data-i18n="lbl_dock_catalog">Tủ Hóa Chất & Thiết Bị (Click / Kéo thả):</div>
+        <div id="dockCatalogHeaderLabel" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider shrink-0 pt-0.5" data-i18n="lbl_dock_catalog">Danh Mục Hóa Chất & Thiết Bị:</div>
         <div id="dynamicEquipmentDockList" class="flex-1 overflow-y-auto space-y-1.5 pr-0.5"></div>
       </div>
 
@@ -1201,8 +1196,8 @@
       <div id="leftTabPanel-telemetry" class="hidden flex-1 flex-col overflow-y-auto space-y-2.5 pr-0.5">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-slate-800 dark:text-slate-200" data-i18n="lbl_live_telemetry">Số liệu đo trực tiếp</span>
-          <button onclick="recordMeasurementSnapshot()" class="px-2 py-0.5 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold cursor-pointer" data-i18n="btn_save_point">
-            + Lưu điểm đo
+          <button onclick="recordMeasurementSnapshot()" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold cursor-pointer" data-i18n="btn_save_point">
+            Lưu điểm đo
           </button>
         </div>
 
@@ -1221,38 +1216,39 @@
       </div>
     </aside>
 
-    <!-- 2. CENTER STAGE: 2D DISSOLVE WORKBENCH & 3D PROCEDURAL VIEWPORT -->
+    <!-- 2. CENTER STAGE: 2D WORKBENCH, 3D WEBGL & AUGMENTED REALITY (AR) VIEWPORT -->
     <section id="centerViewport" class="flex-1 h-full flex flex-col min-w-0 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-xs">
-      <!-- Stage Toolbar -->
+      <!-- Clean Stage Toolbar -->
       <div class="h-12 shrink-0 px-3 sm:px-4 bg-slate-50 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
-        <div class="flex items-center gap-1.5">
-          <div class="flex items-center gap-1 bg-slate-200/70 dark:bg-slate-900 p-1 rounded-xl">
-            <button onclick="setViewMode('2d')" id="viewModeBtn-2d" class="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer" data-i18n="btn_mode_2d">
-              🔬 Bàn Lab 2D
-            </button>
-            <button onclick="setViewMode('3d')" id="viewModeBtn-3d" class="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 cursor-pointer" data-i18n="btn_mode_3d">
-              🧊 Mô Hình 3D
-            </button>
-          </div>
+        <!-- Segmented View Mode Switcher: 2D | 3D | AR -->
+        <div class="flex items-center gap-1 bg-slate-200/80 dark:bg-slate-900 p-1 rounded-xl border border-slate-300/60 dark:border-slate-800">
+          <button onclick="setViewMode('2d')" id="viewModeBtn-2d" class="px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer whitespace-nowrap" data-i18n="btn_mode_2d">
+            Bàn Lab 2D
+          </button>
+          <button onclick="setViewMode('3d')" id="viewModeBtn-3d" class="px-3 py-1 rounded-lg text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer whitespace-nowrap" data-i18n="btn_mode_3d">
+            Mô Hình 3D
+          </button>
+          <button onclick="setViewMode('ar')" id="viewModeBtn-ar" class="px-3 py-1 rounded-lg text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer whitespace-nowrap" data-i18n="btn_mode_ar">
+            Thực Tế Ảo AR
+          </button>
         </div>
 
         <!-- Live Sensor Readout Pill in Center -->
-        <div class="hidden sm:flex items-center gap-2.5 text-xs font-mono bg-white dark:bg-slate-900 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-800">
+        <div class="hidden xl:flex items-center gap-2.5 text-xs font-mono bg-white dark:bg-slate-900 px-3.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800">
           <span id="chartPrimaryMetric" class="text-sky-600 dark:text-sky-400 font-bold tabular-nums">pH: 7.00</span>
-          <span class="text-slate-300 dark:text-slate-700">|</span>
+          <span class="text-slate-300 dark:text-slate-700">·</span>
           <span id="chartSecondaryMetric" class="text-amber-600 dark:text-amber-400 font-bold tabular-nums">25.0 °C</span>
         </div>
 
-        <!-- Stage Action Controls -->
+        <!-- Clean Text Stage Action Controls -->
         <div class="flex items-center gap-1.5">
-          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-xs font-semibold transition-colors cursor-pointer" data-i18n="btn_reset_lab">
-            🔄 Làm lại
+          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" data-i18n="btn_reset_lab">
+            Làm lại
           </button>
-          <button onclick="togglePauseSimulation()" id="pauseSimBtn" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-xs font-semibold transition-colors cursor-pointer" data-i18n="btn_pause_lab">
-            ⏸️ Tạm dừng
+          <button onclick="togglePauseSimulation()" id="pauseSimBtn" class="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" data-i18n="btn_pause_lab">
+            Tạm dừng
           </button>
-          <button onclick="toggleAISidebar()" id="toggleAIDrawerBtn" class="hidden lg:flex px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 dark:bg-slate-800 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-slate-700 text-xs font-bold items-center gap-1 transition-colors cursor-pointer" title="Ẩn/Hiện cột Gia sư AI để mở rộng bàn thí nghiệm">
-            <span>🤖</span>
+          <button onclick="toggleAISidebar()" id="toggleAIDrawerBtn" class="hidden lg:inline-flex px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 dark:bg-slate-800 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-slate-700 text-xs font-semibold items-center transition-colors cursor-pointer whitespace-nowrap" title="Ẩn/Hiện cột Gia sư AI">
             <span data-i18n="btn_toggle_ai">Gia sư AI</span>
           </button>
         </div>
@@ -1273,32 +1269,9 @@
             onmouseup="handleCanvasPointerUp(event)"
           ></canvas>
 
-          <!-- NOBOOK-Style Floating Apparatus & Manipulation Dock (Bottom of 2D Stage) -->
-          <div id="nobookBenchDock" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-300 dark:border-slate-700/80 shadow-xl max-w-[96%] overflow-x-auto">
-            <button onclick="toggleBenchBurner()" id="benchBurnerBtn" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Bật/Tắt đèn cồn đun nóng bình thí nghiệm">
-              <span>🔥</span>
-              <span id="benchBurnerLabel" data-i18n="dock_burner_off">Đèn cồn: TẮT</span>
-            </button>
-            <button onclick="triggerBenchDropper()" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Nhỏ thêm thuốc thử bằng ống nhỏ giọt">
-              <span>💧</span>
-              <span data-i18n="dock_dropper">Nhỏ giọt</span>
-            </button>
-            <button onclick="triggerBenchStirrer()" id="benchStirBtn" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Dùng đũa thủy tinh khuấy đều dung dịch">
-              <span>🥄</span>
-              <span data-i18n="dock_stir">Khuấy đều</span>
-            </button>
-            <button onclick="toggleXRayMode()" id="benchXrayQuickBtn" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-purple-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Bật kính lúp soi ion vi mô & vector">
-              <span>🔍</span>
-              <span id="benchXrayQuickLabel" data-i18n="dock_loupe">Kính lúp Ion</span>
-            </button>
-            <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all" title="Chạy ngay hiện tượng chính của bài học">
-              <span>⚡</span>
-              <span data-i18n="dock_run">Chạy Phản Ứng</span>
-            </button>
-            <button onclick="clearVesselReagents()" class="px-2.5 py-1 rounded-xl bg-rose-50 dark:bg-rose-950/70 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/70 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Rửa sạch dụng cụ về trạng thái ban đầu">
-              <span>↺</span>
-              <span data-i18n="dock_wash">Rửa cốc</span>
-            </button>
+          <!-- Clean Bottom Manipulation Dock (Bottom of 2D Stage) -->
+          <div id="nobookBenchDock" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 border border-slate-300 dark:border-slate-700/80 shadow-lg max-w-[96%] overflow-x-auto">
+            <!-- Dynamically rendered by renderBenchApparatusDock() -->
           </div>
 
           <!-- Drop Indicator Overlay -->
@@ -1309,13 +1282,13 @@
           </div>
 
           <!-- Interactive Reaction Guidance Toast -->
-          <div id="reactionGuidanceToast" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-sky-400/60 rounded-2xl p-3 shadow-xl z-30 transition-all">
+          <div id="reactionGuidanceToast" class="hidden absolute top-3 left-3 right-3 sm:right-auto sm:max-w-md bg-white/95 dark:bg-slate-900/95 border border-slate-300 dark:border-slate-700 rounded-xl p-3 shadow-lg z-30 transition-all">
             <div class="flex items-start justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <span class="text-base" id="guidanceToastIcon">🧪</span>
+              <div class="flex items-center gap-1.5">
+                <span class="hidden" id="guidanceToastIcon"></span>
                 <span class="text-xs font-bold text-slate-900 dark:text-white" id="guidanceToastTitle">Trạng thái Bàn Thí Nghiệm</span>
               </div>
-              <button onclick="dismissGuidanceToast()" class="text-slate-400 hover:text-slate-700 text-xs cursor-pointer p-0.5">✕</button>
+              <button onclick="dismissGuidanceToast()" class="text-slate-400 hover:text-slate-700 text-xs cursor-pointer px-1">✕</button>
             </div>
             <p id="guidanceToastMessage" class="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-snug">
               Đã nạp hóa chất. Hãy kết hợp với chất tương thích để sinh ra phản ứng hóa học!
@@ -1324,69 +1297,107 @@
           </div>
         </div>
 
-        <!-- 3D Three.js Viewport -->
-        <div id="canvas3DContainer" class="w-full h-full relative flex-1 hidden">
-          <div id="threeMount" class="w-full h-full"></div>
-          <!-- 3D Model Info & Legend Badge -->
-          <div class="absolute top-3 left-3 max-w-xs sm:max-w-md bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-300 dark:border-slate-700 rounded-2xl p-3 shadow-lg pointer-events-none">
+        <!-- 3D Three.js & Augmented Reality (AR) Camera Viewport -->
+        <div id="canvas3DContainer" class="w-full h-full relative flex-1 hidden overflow-hidden bg-slate-950">
+          <!-- Live Device Camera Video Feed for AR Mode -->
+          <video
+            id="arCameraFeed"
+            autoplay
+            playsinline
+            muted
+            class="hidden absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          ></video>
+
+          <!-- AR Physical Environment Fallback Surface Grid (Shown when AR is active) -->
+          <div
+            id="arSpatialGridOverlay"
+            class="hidden absolute inset-0 z-[1] pointer-events-none"
+            style="background: radial-gradient(circle at 50% 60%, rgba(14, 165, 233, 0.14) 0%, rgba(15, 23, 42, 0.35) 75%);"
+          >
+            <!-- Subtle AR Corner Viewfinder Brackets -->
+            <div class="absolute top-16 left-5 w-7 h-7 border-t-2 border-l-2 border-sky-400/70 rounded-tl-md"></div>
+            <div class="absolute top-16 right-5 w-7 h-7 border-t-2 border-r-2 border-sky-400/70 rounded-tr-md"></div>
+            <div class="absolute bottom-16 left-5 w-7 h-7 border-b-2 border-l-2 border-sky-400/70 rounded-bl-md"></div>
+            <div class="absolute bottom-16 right-5 w-7 h-7 border-b-2 border-r-2 border-sky-400/70 rounded-br-md"></div>
+          </div>
+
+          <!-- Transparent WebGL Mount (Projects 3D Model Over Studio or AR Camera) -->
+          <div id="threeMount" class="w-full h-full relative z-10"></div>
+
+          <!-- Top-Left 3D / AR Model Info & Status Card -->
+          <div class="absolute top-3 left-3 z-20 max-w-xs sm:max-w-md bg-slate-900/90 text-white border border-slate-700/80 rounded-xl p-3 shadow-lg pointer-events-none">
             <div class="flex items-center gap-2">
-              <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-600 text-white" id="threeModelTagBadge">3D WEBGL</span>
-              <span class="text-xs font-extrabold text-slate-900 dark:text-white truncate" id="threeModelTitleBadge">Mô hình 3D Tương Tác</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-sky-600 text-white" id="threeModelTagBadge">3D WEBGL</span>
+              <span class="text-xs font-bold text-white truncate" id="threeModelTitleBadge">Mô hình 3D Tương Tác</span>
             </div>
-            <p class="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-snug" id="threeModelSubBadge">
+            <p class="text-[11px] text-slate-300 mt-1 leading-snug" id="threeModelSubBadge">
               Mô hình cấu trúc không gian 3 chiều riêng biệt theo từng bài thí nghiệm.
             </p>
-          </div>
-          <div class="absolute bottom-3 right-3 flex items-center gap-1.5">
-            <button onclick="reset3DCameraView()" class="bg-white/95 dark:bg-slate-900/95 hover:bg-sky-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl px-2.5 py-1.5 text-[11px] font-bold shadow-md cursor-pointer">
-              🎯 Căn giữa 3D
-            </button>
-            <div class="bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-[11px] shadow-md pointer-events-none" data-i18n="hint_3d_rotate">
-              🖱️ Kéo chuột xoay 360° · Cuộn chuột để Phóng to
+            <div id="arCameraStatusText" class="hidden mt-1.5 pt-1.5 border-t border-slate-700/80 text-[10px] font-mono text-emerald-400">
+              AR Camera: Đang chiếu mô hình 3D vào không gian thực tế
             </div>
+          </div>
+
+          <!-- Unified Bottom-Center 3D & AR Spatial Control Dock -->
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-slate-700 shadow-xl max-w-[96%] overflow-x-auto">
+            <button onclick="toggleARMode()" id="arQuickToggleBtn" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold transition-colors cursor-pointer whitespace-nowrap">
+              Bật Camera AR
+            </button>
+            <button onclick="switchARCameraFacing()" id="arSwitchCamBtn" class="hidden px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap">
+              Đổi Camera
+            </button>
+            <button onclick="adjust3DModelScale(-0.18)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap">
+              Thu nhỏ -
+            </button>
+            <button onclick="adjust3DModelScale(0.18)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap">
+              Phóng to +
+            </button>
+            <button onclick="toggle3DAutoRotate()" id="threeAutoRotateBtn" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap">
+              Tự xoay: ON
+            </button>
+            <button onclick="reset3DCameraView()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap">
+              Căn giữa
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Bottom Molecular Equation Banner -->
-      <div id="equationBanner" class="h-11 shrink-0 px-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+      <!-- Bottom Molecular Equation & Phenomenon Banner -->
+      <div id="equationBanner" class="h-10 shrink-0 px-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
         <div class="flex items-center gap-2 min-w-0">
-          <span class="text-[11px] font-mono uppercase text-sky-600 dark:text-sky-400 font-bold shrink-0" data-i18n="lbl_formula_banner">CÔNG THỨC / PHƯƠNG TRÌNH:</span>
+          <span class="text-[10px] font-mono uppercase text-sky-600 dark:text-sky-400 font-bold shrink-0" data-i18n="lbl_formula_banner">CÔNG THỨC:</span>
           <span id="molecularEquationText" class="text-xs font-mono text-slate-900 dark:text-white font-bold truncate">Đang tải...</span>
         </div>
-        <div class="text-xs font-mono text-slate-500 dark:text-slate-400 truncate hidden md:block" id="ionicEquationText">Mục tiêu: Khảo sát trực quan trên bàn thí nghiệm</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 truncate hidden md:block" id="ionicEquationText">Mục tiêu: Khảo sát trực quan trên bàn thí nghiệm</div>
       </div>
     </section>
 
     <!-- 3. RIGHT SIDEBAR: AI CO-PILOT SOCRATIC TUTOR (COLLAPSIBLE ON DESKTOP & TABBED ON MOBILE) -->
-    <aside id="rightSidebar" class="w-full lg:w-72 shrink-0 h-full flex flex-col gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-xs overflow-hidden">
+    <aside id="rightSidebar" class="w-full lg:w-[270px] xl:w-72 shrink-0 h-full flex flex-col gap-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 shadow-xs overflow-hidden">
       <!-- AI Header -->
-      <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800 shrink-0">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-base">🤖</div>
-          <div>
-            <div class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="ai_title">Gia Sư AI LabSim</div>
-            <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="ai_sub">Giải thích hiện tượng & Công thức</div>
-          </div>
+      <div class="flex items-center justify-between pb-2.5 border-b border-slate-200 dark:border-slate-800 shrink-0">
+        <div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="ai_title">Gia Sư AI LabSim</div>
+          <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="ai_sub">Giải thích hiện tượng & Công thức</div>
         </div>
-        <button onclick="toggleAISidebar()" class="hidden lg:inline-flex text-slate-400 hover:text-slate-700 text-xs cursor-pointer" title="Thu gọn">✕</button>
+        <button onclick="toggleAISidebar()" class="hidden lg:inline-flex text-slate-400 hover:text-slate-700 text-xs cursor-pointer px-1" title="Thu gọn">✕</button>
       </div>
 
-      <!-- Quick Prompt Chips -->
-      <div class="grid grid-cols-3 gap-1 shrink-0 pt-0.5">
-        <button onclick="askQuickPrompt('EXPLAIN')" class="py-1 px-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-sky-700 dark:text-sky-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_explain">
-          💡 Bản chất
+      <!-- Clean Text Quick Prompt Chips -->
+      <div class="grid grid-cols-3 gap-1.5 shrink-0">
+        <button onclick="askQuickPrompt('EXPLAIN')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-sky-700 dark:text-sky-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_explain">
+          Bản chất
         </button>
-        <button onclick="askQuickPrompt('PREDICT')" class="py-1 px-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_predict">
-          🔮 Dự đoán
+        <button onclick="askQuickPrompt('PREDICT')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_predict">
+          Dự đoán
         </button>
-        <button onclick="askQuickPrompt('QUIZ_1')" class="py-1 px-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_quiz">
-          🎯 Câu đố
+        <button onclick="askQuickPrompt('QUIZ_1')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_quiz">
+          Câu đố
         </button>
       </div>
 
       <!-- Chat History -->
-      <div id="aiChatMessages" class="flex-1 overflow-y-auto space-y-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs"></div>
+      <div id="aiChatMessages" class="flex-1 overflow-y-auto space-y-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs"></div>
 
       <!-- Chat Input Box -->
       <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex gap-1.5 shrink-0">
@@ -1397,8 +1408,8 @@
           class="flex-1 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-sky-500"
           onkeydown="if(event.key==='Enter') sendUserChatMessage()"
         />
-        <button onclick="sendUserChatMessage()" class="p-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white transition-colors cursor-pointer">
-          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        <button onclick="sendUserChatMessage()" class="px-3 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition-colors cursor-pointer">
+          Gửi
         </button>
       </div>
     </aside>
@@ -1811,9 +1822,7 @@
         htmlEl.classList.add('dark');
         htmlEl.classList.remove('light');
       }
-      const iconEl = document.getElementById('themeToggleIcon');
       const lblEl = document.getElementById('themeToggleLabel');
-      if (iconEl) iconEl.textContent = s.theme === 'light' ? '☀️' : '🌙';
       if (lblEl) {
         lblEl.textContent = s.lang === 'en'
           ? (s.theme === 'light' ? 'Light' : 'Dark')
@@ -1907,13 +1916,13 @@
         hero_line_1: 'Hạ Tầng Thí Nghiệm Ảo',
         hero_line_2_prefix: 'Cho 36 Bài Học ',
         hero_line_2_em: 'Hóa · Lý · Sinh',
-        hero_desc: 'Thực hành trọn vẹn 36 bài thí nghiệm trọng tâm THPT Việt Nam và Phòng Sandbox Tự Do đa môn. Tương tác vật lý theo thời gian thực trên bàn thí nghiệm 2D và mô hình 3D WebGL xoay 360°.',
+        hero_desc: 'Thực hành trọn vẹn 36 bài thí nghiệm trọng tâm THPT Việt Nam và Phòng Sandbox Tự Do đa môn. Tương tác vật lý theo thời gian thực trên bàn thí nghiệm 2D, mô hình 3D WebGL xoay 360° và trình chiếu AR.',
         cta_explore_36: 'Mở Kho 36 Bài Thí Nghiệm',
         cta_open_sandbox: 'Vào Phòng DIY Sandbox Tự Do',
         stat_1_title: '36 Bài Thí Nghiệm Lớp 10 · 11 · 12',
         stat_1_sub: '12 Hóa · 12 Lý · 12 Sinh chuẩn GDPT 2018',
-        stat_2_title: '11 Bộ Máy Mô Phỏng 2D & 3D WebGL',
-        stat_2_sub: 'Tương tác vật lý 60 FPS & Soi kính lúp Ion',
+        stat_2_title: '11 Bộ Máy Mô Phỏng 2D, 3D & Thực Tế Ảo AR',
+        stat_2_sub: 'Tương tác vật lý 60 FPS & Trình chiếu không gian thật',
         stat_3_title: '28+ Phản Ứng & DIY Sandbox Đa Môn',
         stat_3_sub: 'Kéo thả tự do Hóa · Lý · Sinh & Gia sư AI',
         teaser_header: 'Mô Phỏng Nền:',
@@ -1928,37 +1937,38 @@
         lib_subtitle: 'Chọn môn học và khối lớp để mở bàn thí nghiệm chuyên biệt hoặc vào DIY Sandbox đa môn',
         lib_open_sandbox: 'Phòng DIY Sandbox Tự Do',
         filter_all_subj: 'Tất cả (36)',
-        filter_chem: '🧪 Hóa Học (12)',
-        filter_phys: '⚡ Vật Lý (12)',
-        filter_bio: '🧬 Sinh Học (12)',
+        filter_chem: 'Hóa Học (12)',
+        filter_phys: 'Vật Lý (12)',
+        filter_bio: 'Sinh Học (12)',
         filter_all_grade: 'Mọi Khối',
         filter_g10: 'Lớp 10',
         filter_g11: 'Lớp 11',
         filter_g12: 'Lớp 12',
-        mob_tab_stage: '🔬 Bàn Mô Phỏng',
-        mob_tab_controls: '🎛️ Điều Khiển & DIY',
-        mob_tab_ai: '🤖 Gia Sư AI',
-        btn_change_lesson: '← Đổi bài',
-        tab_controls: '🎛️ Điều khiển',
-        tab_dock: '🧰 Tủ đồ DIY',
-        tab_telemetry: '📊 Đồ thị',
+        mob_tab_stage: 'Bàn Mô Phỏng',
+        mob_tab_controls: 'Điều Khiển & DIY',
+        mob_tab_ai: 'Gia Sư AI',
+        btn_change_lesson: 'Đổi bài',
+        tab_controls: 'Điều khiển',
+        tab_dock: 'Tủ đồ DIY',
+        tab_telemetry: 'Đồ thị',
         sandbox_subj_label: 'CHỌN MÔN SANDBOX TỰ DO:',
-        sb_chem: '🧪 Hóa Học',
-        sb_phys: '⚡ Vật Lý',
-        sb_bio: '🧬 Sinh Học',
-        sb_quick_label: '⚡ THỬ NHANH 1-CHẠM:',
-        sb_target_beaker: '🧪 Cốc Thí Nghiệm',
-        sb_target_skin: '✋ Mô Da Người',
+        sb_chem: 'Hóa Học',
+        sb_phys: 'Vật Lý',
+        sb_bio: 'Sinh Học',
+        sb_quick_label: 'THỬ NHANH 1-CHẠM:',
+        sb_target_beaker: 'Cốc Thí Nghiệm',
+        sb_target_skin: 'Mô Da Người',
         sb_vessel_content: 'ĐANG CÓ TRONG BÌNH:',
-        sb_wash_btn: '↺ Rửa sạch',
+        sb_wash_btn: 'Rửa sạch',
         sb_empty_hint: 'Bình đang trống (Hãy chọn chất bên dưới)',
         sb_dock_hint: 'Bấm hoặc kéo thả vào bàn thí nghiệm:',
         chart_realtime_label: 'ĐỒ THỊ THỜI GIAN THỰC',
         chart_clear_btn: 'Xóa',
         log_label: 'NHẬT KÝ THAO TÁC',
         log_ready: '[Hệ thống] Bàn thí nghiệm đã sẵn sàng.',
-        btn_ai_drawer: '🤖 Gia Sư AI',
-        dock_tools_label: 'Dụng cụ:',
+        btn_ai_drawer: 'Gia Sư AI',
+        btn_mode_ar: 'Thực Tế Ảo AR',
+        dock_tools_label: 'Thao tác:',
         dock_burner_off: 'Đèn cồn: TẮT',
         dock_burner_on: 'Đèn cồn: ĐANG ĐUN',
         dock_dropper: 'Nhỏ thuốc thử',
@@ -1968,13 +1978,13 @@
         dock_wash: 'Rửa cốc',
         drop_here_title: 'Thả vào Bàn Thí Nghiệm',
         drop_here_sub: 'Kích hoạt phản ứng & cập nhật thông số',
-        hint_3d_rotate: '🖱️ Kéo chuột xoay 360° · Cuộn chuột để Phóng to',
+        hint_3d_rotate: 'Kéo chuột xoay 360° · Cuộn để phóng to · Bật AR để chiếu lên bàn thật',
         lbl_formula_banner: 'CÔNG THỨC / PHƯƠNG TRÌNH:',
         ai_title: 'Gia Sư AI LabSim',
         ai_sub: 'Giải thích hiện tượng & Công thức',
-        ai_chip_explain: '💡 Bản chất',
-        ai_chip_predict: '🔮 Dự đoán',
-        ai_chip_quiz: '🎯 Câu đố',
+        ai_chip_explain: 'Bản chất',
+        ai_chip_predict: 'Dự đoán',
+        ai_chip_quiz: 'Câu đố',
         open_lab_btn: 'Mở Bàn Lab →',
         search_placeholder: 'Tìm thí nghiệm (VD: chuẩn độ, khe Young, ADN, mạch RLC...)',
         ai_input_placeholder: 'Hỏi Gia sư AI về thí nghiệm...'
@@ -1996,13 +2006,13 @@
         hero_line_1: 'Interactive Virtual Platform',
         hero_line_2_prefix: 'For 36 High School ',
         hero_line_2_em: 'Science Labs',
-        hero_desc: 'Experience 36 core high school experiments and a Multi-Subject DIY Sandbox (Chemistry, Physics, Biology) with real-time 2D physics simulation, 360° 3D WebGL models, and AI guidance.',
+        hero_desc: 'Experience 36 core high school experiments and a Multi-Subject DIY Sandbox (Chemistry, Physics, Biology) with real-time 2D physics simulation, 360° 3D WebGL models, and live camera AR projection.',
         cta_explore_36: 'Explore 36 Virtual Labs',
         cta_open_sandbox: 'Launch DIY Free Sandbox',
         stat_1_title: '36 Core Curriculum Labs (Grades 10–12)',
         stat_1_sub: '12 Chemistry · 12 Physics · 12 Biology',
-        stat_2_title: '11 Real-Time 2D & 3D WebGL Engines',
-        stat_2_sub: '60 FPS Physics Matrix & X-Ray Ion Loupe',
+        stat_2_title: '11 Real-Time 2D, 3D WebGL & AR Engines',
+        stat_2_sub: '60 FPS Physics Matrix & Camera AR Projection',
         stat_3_title: '28+ Interactive Reactions & DIY Sandbox',
         stat_3_sub: 'Free Drag-and-Drop Across All 3 Subjects',
         teaser_header: 'Live Backdrop:',
@@ -2017,37 +2027,38 @@
         lib_subtitle: 'Filter by subject and grade to launch a specialized workbench or open the Multi-Subject DIY Sandbox',
         lib_open_sandbox: 'Multi-Subject DIY Sandbox',
         filter_all_subj: 'All Subjects (36)',
-        filter_chem: '🧪 Chemistry (12)',
-        filter_phys: '⚡ Physics (12)',
-        filter_bio: '🧬 Biology (12)',
+        filter_chem: 'Chemistry (12)',
+        filter_phys: 'Physics (12)',
+        filter_bio: 'Biology (12)',
         filter_all_grade: 'All Grades',
         filter_g10: 'Grade 10',
         filter_g11: 'Grade 11',
         filter_g12: 'Grade 12',
-        mob_tab_stage: '🔬 Lab Stage',
-        mob_tab_controls: '🎛️ Controls & DIY',
-        mob_tab_ai: '🤖 AI Tutor',
-        btn_change_lesson: '← Library',
-        tab_controls: '🎛️ Controls',
-        tab_dock: '🧰 DIY Sandbox',
-        tab_telemetry: '📊 Telemetry',
+        mob_tab_stage: 'Lab Stage',
+        mob_tab_controls: 'Controls & DIY',
+        mob_tab_ai: 'AI Tutor',
+        btn_change_lesson: 'Library',
+        tab_controls: 'Controls',
+        tab_dock: 'DIY Sandbox',
+        tab_telemetry: 'Telemetry',
         sandbox_subj_label: 'SELECT SANDBOX SUBJECT:',
-        sb_chem: '🧪 Chemistry',
-        sb_phys: '⚡ Physics',
-        sb_bio: '🧬 Biology',
-        sb_quick_label: '⚡ 1-CLICK QUICK PRESETS:',
-        sb_target_beaker: '🧪 Lab Vessel',
-        sb_target_skin: '✋ Skin Tissue',
+        sb_chem: 'Chemistry',
+        sb_phys: 'Physics',
+        sb_bio: 'Biology',
+        sb_quick_label: '1-CLICK QUICK PRESETS:',
+        sb_target_beaker: 'Lab Vessel',
+        sb_target_skin: 'Skin Tissue',
         sb_vessel_content: 'ACTIVE IN VESSEL:',
-        sb_wash_btn: '↺ Wash Vessel',
+        sb_wash_btn: 'Wash Vessel',
         sb_empty_hint: 'Vessel is empty (Select items below)',
         sb_dock_hint: 'Click or drag items onto the workbench:',
         chart_realtime_label: 'REAL-TIME TELEMETRY CHART',
         chart_clear_btn: 'Clear',
         log_label: 'EXPERIMENT LOG',
         log_ready: '[System] Virtual workbench ready.',
-        btn_ai_drawer: '🤖 AI Tutor',
-        dock_tools_label: 'Apparatus:',
+        btn_ai_drawer: 'AI Tutor',
+        btn_mode_ar: 'AR Camera',
+        dock_tools_label: 'Controls:',
         dock_burner_off: 'Burner: OFF',
         dock_burner_on: 'Burner: HEATING',
         dock_dropper: 'Drop Reagent',
@@ -2057,13 +2068,13 @@
         dock_wash: 'Wash Beaker',
         drop_here_title: 'Drop onto Workbench',
         drop_here_sub: 'Trigger reaction & update parameters',
-        hint_3d_rotate: '🖱️ Drag to rotate 360° · Scroll to Zoom',
+        hint_3d_rotate: 'Drag to rotate 360° · Scroll to Zoom · Toggle AR to project in real space',
         lbl_formula_banner: 'EQUATION / FORMULA:',
         ai_title: 'LabSim AI Tutor',
         ai_sub: 'Explains phenomena & equations',
-        ai_chip_explain: '💡 Principle',
-        ai_chip_predict: '🔮 Predict',
-        ai_chip_quiz: '🎯 Quiz Me',
+        ai_chip_explain: 'Principle',
+        ai_chip_predict: 'Predict',
+        ai_chip_quiz: 'Quiz Me',
         open_lab_btn: 'Open Lab →',
         search_placeholder: 'Search experiments (e.g. titration, Young slit, DNA, RLC...)...',
         ai_input_placeholder: 'Ask AI Tutor about this experiment...'
@@ -2133,7 +2144,7 @@
       const dict = I18N_DICT[s.lang] || I18N_DICT.vi;
 
       const btn = document.getElementById('langToggleBtn');
-      if (btn) btn.textContent = s.lang === 'vi' ? '🇻🇳 VI' : '🇬🇧 EN';
+      if (btn) btn.textContent = s.lang === 'vi' ? 'VI' : 'EN';
 
       // Translate all [data-i18n] elements
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -2165,6 +2176,7 @@
       renderSandboxQuickPresets();
       updateActiveVesselPills();
       updateBenchBurnerUI();
+      if (typeof updateARControlLabels === 'function') updateARControlLabels();
     }
 
     function navigateToView(viewName) {
@@ -2716,14 +2728,15 @@
         >
           <div>
             ${getExperimentPreviewSVG(exp)}
-            <div class="flex items-center justify-between text-[11px] font-mono font-bold mt-3 mb-1 text-sky-600 dark:text-sky-400">
-              <span>${exp.icon} ${engineNameMap[exp.engine2D] || exp.engine2D}</span>
+            <div class="flex items-center justify-between text-[11px] font-mono font-bold mt-3 mb-1.5 text-sky-600 dark:text-sky-400">
+              <span>${engineNameMap[exp.engine2D] || exp.engine2D}</span>
+              <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px]">${isEn ? 'Grade' : 'Lớp'} ${exp.grade}</span>
             </div>
             <h3 class="text-sm font-bold text-slate-900 dark:text-white leading-snug mb-1.5">${loc.title}</h3>
             <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">${loc.sub}</p>
           </div>
-          <div class="mt-3.5 pt-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate max-w-[175px]">${exp.formula}</span>
+          <div class="mt-3.5 pt-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+            <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400 truncate max-w-[185px]">${exp.formula}</span>
             <span class="text-xs font-bold text-sky-600 dark:text-sky-400 shrink-0">${openLbl}</span>
           </div>
         </article>
@@ -3146,60 +3159,49 @@
       const s = window.currentLabState;
       const isEn = s.lang === 'en';
       const xrayClass = s.xrayMode
-        ? 'px-2.5 py-1 rounded-xl bg-purple-600 text-white border border-purple-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all'
-        : 'px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-purple-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
+        ? 'px-2.5 py-1 rounded-lg bg-purple-600 text-white border border-purple-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all'
+        : 'px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-purple-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
 
       if (s.activeTab === 'CHEM') {
         const burnerLit = s.chem.benchBurnerLit;
         const burnerClass = burnerLit
-          ? 'px-2.5 py-1 rounded-xl bg-amber-500 text-slate-950 border border-amber-300 text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-md transition-all'
-          : 'px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
+          ? 'px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 border border-amber-300 text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-md transition-all'
+          : 'px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
         dock.innerHTML = `
           <button onclick="toggleBenchBurner()" id="benchBurnerBtn" class="${burnerClass}" title="Bật/Tắt đèn cồn đun nóng bình thí nghiệm">
-            <span>🔥</span>
-            <span id="benchBurnerLabel">${burnerLit ? (isEn ? 'Burner: ON 🔥' : 'Đèn cồn: ĐANG ĐUN') : (isEn ? 'Burner: OFF' : 'Đèn cồn: TẮT')}</span>
+            <span id="benchBurnerLabel">${burnerLit ? (isEn ? 'Burner: ON' : 'Đèn cồn: ĐANG ĐUN') : (isEn ? 'Burner: OFF' : 'Đèn cồn: TẮT')}</span>
           </button>
-          <button onclick="triggerBenchDropper()" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Nhỏ thêm thuốc thử bằng ống nhỏ giọt">
-            <span>💧</span>
+          <button onclick="triggerBenchDropper()" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Nhỏ thêm thuốc thử bằng ống nhỏ giọt">
             <span>${isEn ? 'Drop Reagent' : 'Nhỏ thuốc thử'}</span>
           </button>
-          <button onclick="triggerBenchStirrer()" id="benchStirBtn" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Dùng đũa thủy tinh khuấy đều dung dịch">
-            <span>🥄</span>
-            <span>${isEn ? 'Glass Stirrer' : 'Khuấy đều'}</span>
+          <button onclick="triggerBenchStirrer()" id="benchStirBtn" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all" title="Dùng đũa thủy tinh khuấy đều dung dịch">
+            <span>${isEn ? 'Stir Rod' : 'Khuấy đều'}</span>
           </button>
           <button onclick="toggleXRayMode()" id="benchXrayQuickBtn" class="${xrayClass}" title="Bật kính lúp soi ion vi mô">
-            <span>🔍</span>
             <span id="benchXrayQuickLabel">${s.xrayMode ? (isEn ? 'Ion Loupe: ON' : 'Kính lúp: ON') : (isEn ? 'Ion Loupe' : 'Kính lúp Ion')}</span>
           </button>
-          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
-            <span>⚡</span>
+          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
             <span>${isEn ? 'Run Reaction' : 'Chạy Phản Ứng'}</span>
           </button>
-          <button onclick="clearVesselReagents()" class="px-2.5 py-1 rounded-xl bg-rose-50 dark:bg-rose-950/70 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/70 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-            <span>↺</span>
+          <button onclick="clearVesselReagents()" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/70 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/70 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
             <span>${isEn ? 'Wash Beaker' : 'Rửa cốc'}</span>
           </button>
         `;
       } else if (s.activeTab === 'PHYS') {
         dock.innerHTML = `
-          <button onclick="window.currentLabState.phys.projTime=0;window.currentLabState.isPaused=false;" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-            <span>🚀</span>
+          <button onclick="window.currentLabState.phys.projTime=0;window.currentLabState.isPaused=false;" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
             <span>${isEn ? 'Relaunch Motion' : 'Phóng / Chạy lại'}</span>
           </button>
-          <button onclick="applyDockItemToWorkbench(window.currentLabState.phys.gravity < 5 ? 'GRAVITY_EARTH' : 'GRAVITY_MOON');updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-            <span>🌍</span>
+          <button onclick="applyDockItemToWorkbench(window.currentLabState.phys.gravity < 5 ? 'GRAVITY_EARTH' : 'GRAVITY_MOON');updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
             <span>g = ${(s.phys.gravity || 9.8).toFixed(1)} m/s²</span>
           </button>
           <button onclick="toggleXRayMode()" id="benchXrayQuickBtn" class="${xrayClass}" title="Bật/Tắt hiển thị Vector lực & Từ trường">
-            <span>📐</span>
             <span id="benchXrayQuickLabel">${s.xrayMode ? (isEn ? 'Vectors: ON' : 'Vector Lực: ON') : (isEn ? 'Force Vectors' : 'Soi Vector Lực')}</span>
           </button>
-          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
-            <span>⚡</span>
+          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
             <span>${isEn ? 'Run Physics Sim' : 'Kích Hoạt Vật Lý'}</span>
           </button>
-          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-            <span>↺</span>
+          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
             <span>${isEn ? 'Reset System' : 'Đặt lại hệ'}</span>
           </button>
         `;
@@ -3208,59 +3210,50 @@
         let bioSpecificBtns = '';
         if (s.engine2D === 'BIO_A_MICROSCOPE') {
           bioSpecificBtns = `
-            <button onclick="window.currentLabState.bio.microscopeZoom = window.currentLabState.bio.microscopeZoom === 400 ? 100 : 400; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-              <span>🔬</span>
+            <button onclick="window.currentLabState.bio.microscopeZoom = window.currentLabState.bio.microscopeZoom === 400 ? 100 : 400; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
               <span>${isEn ? 'Objective' : 'Vật kính'}: ${s.bio.microscopeZoom || 400}x</span>
             </button>
-            <button onclick="window.currentLabState.bio.stainType = window.currentLabState.bio.stainType === 'iodine' ? 'none' : 'iodine'; renderLeftControls(); renderBenchApparatusDock();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-              <span>🎨</span>
+            <button onclick="window.currentLabState.bio.stainType = window.currentLabState.bio.stainType === 'iodine' ? 'none' : 'iodine'; renderLeftControls(); renderBenchApparatusDock();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
               <span>${s.bio.stainType === 'iodine' ? (isEn ? 'Stain: Lugol I₂' : 'Nhuộm: Lugol I₂') : (isEn ? 'Fresh Mount' : 'Tiêu bản tươi')}</span>
             </button>
           `;
         } else if (s.engine2D === 'BIO_B_PLANT_ENZYME') {
           if (s.subType === 'CATALASE_ENZYME') {
             bioSpecificBtns = `
-              <button onclick="window.currentLabState.bio.enzymeTempMode = window.currentLabState.bio.enzymeTempMode === 37 ? 100 : (window.currentLabState.bio.enzymeTempMode === 100 ? 0 : 37); renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>🌡️</span>
+              <button onclick="window.currentLabState.bio.enzymeTempMode = window.currentLabState.bio.enzymeTempMode === 37 ? 100 : (window.currentLabState.bio.enzymeTempMode === 100 ? 0 : 37); renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
                 <span>${isEn ? 'Bath Temp' : 'Nhiệt độ ủ'}: ${s.bio.enzymeTempMode ?? 37}°C</span>
               </button>
             `;
           } else {
             bioSpecificBtns = `
-              <button onclick="window.currentLabState.bio.lightLux = window.currentLabState.bio.lightLux > 6000 ? 1500 : 11000; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>☀️</span>
+              <button onclick="window.currentLabState.bio.lightLux = window.currentLabState.bio.lightLux > 6000 ? 1500 : 11000; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
                 <span>${s.bio.lightLux || 6000} Lux</span>
               </button>
-              <button onclick="window.currentLabState.bio.plantGrowthStage = Math.min(1.65, (window.currentLabState.bio.plantGrowthStage || 1.0) + 0.2); renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>🌱</span>
-                <span>${isEn ? 'Grow Shoot' : 'Tăng sinh trưởng'} (${(s.bio.plantGrowthStage || 1.0).toFixed(1)}x)</span>
+              <button onclick="window.currentLabState.bio.plantGrowthStage = Math.min(1.65, (window.currentLabState.bio.plantGrowthStage || 1.0) + 0.2); renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
+                <span>${isEn ? 'Grow Shoot' : 'Sinh trưởng'} (${(s.bio.plantGrowthStage || 1.0).toFixed(1)}x)</span>
               </button>
             `;
           }
         } else if (s.engine2D === 'BIO_C_PHYSIOLOGY') {
           if (s.subType === 'NEURO_SYNAPSE') {
             bioSpecificBtns = `
-              <button onclick="window.currentLabState.bio.neurotransmitterType = window.currentLabState.bio.neurotransmitterType === 'ACH' ? 'GABA' : 'ACH'; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-teal-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>🧠</span>
+              <button onclick="window.currentLabState.bio.neurotransmitterType = window.currentLabState.bio.neurotransmitterType === 'ACH' ? 'GABA' : 'ACH'; renderLeftControls(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-teal-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
                 <span>${s.bio.neurotransmitterType === 'GABA' ? 'GABA (Ức chế)' : 'ACh (Hưng phấn)'}</span>
               </button>
             `;
           } else {
             bioSpecificBtns = `
-              <button onclick="injectHormone('ADRENALINE'); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-rose-50 dark:bg-rose-950/80 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>💉</span>
+              <button onclick="injectHormone('ADRENALINE'); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/80 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
                 <span>Adrenaline (+BPM)</span>
               </button>
-              <button onclick="injectHormone('ACETYLCHOLINE'); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-sky-50 dark:bg-sky-950/80 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-                <span>💧</span>
+              <button onclick="injectHormone('ACETYLCHOLINE'); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/80 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
                 <span>Acetylcholine (-BPM)</span>
               </button>
             `;
           }
         } else {
           bioSpecificBtns = `
-            <button onclick="triggerLessonPrimaryReaction(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-teal-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-              <span>🧬</span>
+            <button onclick="triggerLessonPrimaryReaction(); renderBenchApparatusDock(); updateTopSensorReadout();" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-teal-100 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
               <span>${s.subType === 'DNA_MUTATION' ? (isEn ? 'Toggle UV Ray' : 'Bật/Tắt Tia UV') : (s.subType === 'MENDEL_PUNNETT' ? (isEn ? 'Switch Cross' : 'Đổi phép lai') : (s.subType === 'LOTKA_VOLTERRA' ? (isEn ? 'Add Prey' : 'Tăng quần thể Thỏ') : (s.bio.lactosePresent ? 'Lactose: ON' : 'Lactose: OFF')))}</span>
             </button>
           `;
@@ -3269,15 +3262,12 @@
         dock.innerHTML = `
           ${bioSpecificBtns}
           <button onclick="toggleXRayMode()" id="benchXrayQuickBtn" class="${xrayClass}">
-            <span>🧬</span>
             <span id="benchXrayQuickLabel">${s.xrayMode ? (isEn ? 'Bio Scanner: ON' : 'Vi cấu trúc: ON') : (isEn ? 'Bio Ultrastructure' : 'Soi Vi Cấu Trúc')}</span>
           </button>
-          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
-            <span>⚡</span>
+          <button onclick="triggerLessonPrimaryReaction()" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-extrabold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all">
             <span>${isEn ? 'Run Bio Sim' : 'Kích Hoạt Sinh Học'}</span>
           </button>
-          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
-            <span>↺</span>
+          <button onclick="resetCurrentLab()" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all">
             <span>${isEn ? 'Reset Bio System' : 'Đặt lại hệ Sinh'}</span>
           </button>
         `;
@@ -3361,53 +3351,53 @@
 
       if (s.activeTab === 'CHEM') {
         box.innerHTML = `
-          <button onclick="runOneClickReaction('CuSO4+NaOH')" class="py-1.5 px-2 rounded-lg bg-sky-50 dark:bg-sky-950/80 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🧪 CuSO₄ + NaOH (↓)
+          <button onclick="runOneClickReaction('CuSO4+NaOH')" class="py-1.5 px-2.5 rounded-lg bg-sky-50 dark:bg-sky-950/80 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            CuSO₄ + NaOH (↓)
           </button>
-          <button onclick="runOneClickReaction('KI+PbNO3')" class="py-1.5 px-2 rounded-lg bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            ✨ KI + Pb(NO₃)₂ (${isEn ? 'Golden Rain' : 'Mưa vàng'})
+          <button onclick="runOneClickReaction('KI+PbNO3')" class="py-1.5 px-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/80 hover:bg-amber-100 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            KI + Pb(NO₃)₂ (${isEn ? 'Golden Rain' : 'Mưa vàng'})
           </button>
-          <button onclick="runOneClickReaction('Na2CO3+HCl')" class="py-1.5 px-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🫧 Na₂CO₃ + HCl (CO₂↑)
+          <button onclick="runOneClickReaction('Na2CO3+HCl')" class="py-1.5 px-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            Na₂CO₃ + HCl (CO₂↑)
           </button>
-          <button onclick="runOneClickReaction('H2SO4_conc+Sugar')" class="py-1.5 px-2 rounded-lg bg-rose-50 dark:bg-rose-950/80 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🔥 H₂SO₄ + ${isEn ? 'Sugar' : 'Đường'}
+          <button onclick="runOneClickReaction('H2SO4_conc+Sugar')" class="py-1.5 px-2.5 rounded-lg bg-rose-50 dark:bg-rose-950/80 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            H₂SO₄ + ${isEn ? 'Sugar' : 'Đường'}
           </button>
-          <button onclick="runOneClickReaction('KMnO4+H2O2')" class="py-1.5 px-2 rounded-lg bg-purple-50 dark:bg-purple-950/80 hover:bg-purple-100 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            ⚡ KMnO₄ + H₂O₂ (O₂↑)
+          <button onclick="runOneClickReaction('KMnO4+H2O2')" class="py-1.5 px-2.5 rounded-lg bg-purple-50 dark:bg-purple-950/80 hover:bg-purple-100 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            KMnO₄ + H₂O₂ (O₂↑)
           </button>
-          <button onclick="runOneClickReaction('Iodine+Starch')" class="py-1.5 px-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🌾 I₂ + ${isEn ? 'Starch' : 'Tinh bột'}
+          <button onclick="runOneClickReaction('Iodine+Starch')" class="py-1.5 px-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            I₂ + ${isEn ? 'Starch' : 'Tinh bột'}
           </button>
         `;
       } else if (s.activeTab === 'PHYS') {
         box.innerHTML = `
-          <button onclick="window.currentLabState.engine2D='PHYS_A_MECHANICS';window.currentLabState.subType='PROJECTILE';window.currentLabState.phys.projTime=0;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🚀 ${isEn ? 'Projectile Motion' : 'Ném Xiên & Trọng Trường'}
+          <button onclick="window.currentLabState.engine2D='PHYS_A_MECHANICS';window.currentLabState.subType='PROJECTILE';window.currentLabState.phys.projTime=0;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Projectile Motion' : 'Ném Xiên & Trọng Trường'}
           </button>
-          <button onclick="window.currentLabState.engine2D='PHYS_B_WAVES';window.currentLabState.subType='YOUNG_INTERFERENCE';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-purple-50 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🌈 ${isEn ? 'Young Laser Slit' : 'Giao Thoa Khe Young'}
+          <button onclick="window.currentLabState.engine2D='PHYS_B_WAVES';window.currentLabState.subType='YOUNG_INTERFERENCE';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-purple-50 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Young Laser Slit' : 'Giao Thoa Khe Young'}
           </button>
-          <button onclick="window.currentLabState.engine2D='PHYS_C_ELECTROMAG';window.currentLabState.subType='FARADAY_COIL';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🧲 ${isEn ? 'Faraday Flux Coil' : 'Cảm Ứng Từ Faraday'}
+          <button onclick="window.currentLabState.engine2D='PHYS_C_ELECTROMAG';window.currentLabState.subType='FARADAY_COIL';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Faraday Flux Coil' : 'Cảm Ứng Từ Faraday'}
           </button>
-          <button onclick="window.currentLabState.engine2D='PHYS_D_OPTICS_THERMAL';window.currentLabState.subType='OPTICS_LENS';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🔭 ${isEn ? 'Optics Converging Lens' : 'Thấu Kính Hội Tụ'}
+          <button onclick="window.currentLabState.engine2D='PHYS_D_OPTICS_THERMAL';window.currentLabState.subType='OPTICS_LENS';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Optics Converging Lens' : 'Thấu Kính Hội Tụ'}
           </button>
         `;
       } else {
         box.innerHTML = `
-          <button onclick="window.currentLabState.engine2D='BIO_C_PHYSIOLOGY';window.currentLabState.subType='HEART_ECG';injectHormone('ADRENALINE');renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-rose-50 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            ❤️ ${isEn ? 'Heart ECG + Adrenaline' : 'Tim ECG + Adrenaline'}
+          <button onclick="window.currentLabState.engine2D='BIO_C_PHYSIOLOGY';window.currentLabState.subType='HEART_ECG';injectHormone('ADRENALINE');renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-rose-50 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Heart ECG + Adrenaline' : 'Tim ECG + Adrenaline'}
           </button>
-          <button onclick="window.currentLabState.engine2D='BIO_A_MICROSCOPE';window.currentLabState.subType='ONION_PLASMOLYSIS';window.currentLabState.bio.salinityPercent=8.0;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🔬 ${isEn ? 'Cell Plasmolysis 400x' : 'Co Nguyên Sinh 400x'}
+          <button onclick="window.currentLabState.engine2D='BIO_A_MICROSCOPE';window.currentLabState.subType='ONION_PLASMOLYSIS';window.currentLabState.bio.salinityPercent=8.0;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Cell Plasmolysis 400x' : 'Co Nguyên Sinh 400x'}
           </button>
-          <button onclick="window.currentLabState.engine2D='BIO_B_PLANT_ENZYME';window.currentLabState.subType='PHOTOSYNTHESIS_ELODEA';window.currentLabState.bio.lightLux=11000;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🌱 ${isEn ? 'Elodea Photosynthesis' : 'Quang Hợp Nhả Oxy'}
+          <button onclick="window.currentLabState.engine2D='BIO_B_PLANT_ENZYME';window.currentLabState.subType='PHOTOSYNTHESIS_ELODEA';window.currentLabState.bio.lightLux=11000;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Elodea Photosynthesis' : 'Quang Hợp Nhả Oxy'}
           </button>
-          <button onclick="window.currentLabState.engine2D='BIO_D_GENETICS_ECOLOGY';window.currentLabState.subType='LAC_OPERON';window.currentLabState.bio.lactosePresent=true;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2 rounded-lg bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
-            🧬 ${isEn ? 'Lac Operon Genetics' : 'Phiên Mã Operon Lac'}
+          <button onclick="window.currentLabState.engine2D='BIO_D_GENETICS_ECOLOGY';window.currentLabState.subType='LAC_OPERON';window.currentLabState.bio.lactosePresent=true;renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();build3DSceneForCurrentState();" class="py-1.5 px-2.5 rounded-lg bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-[10px] font-bold text-left truncate cursor-pointer">
+            ${isEn ? 'Lac Operon Genetics' : 'Phiên Mã Operon Lac'}
           </button>
         `;
       }
@@ -3430,16 +3420,16 @@
 
       const isEn = s.lang === 'en';
       showGuidanceToast(
-        '🧰',
+        'LAB',
         isEn ? 'Multi-Subject DIY Sandbox Ready!' : 'Phòng DIY Sandbox Đa Môn Sẵn Sàng!',
         isEn
           ? 'Switch freely between Chemistry, Physics, and Biology in the left DIY panel or click any 1-click preset.'
           : 'Bạn có thể chuyển đổi tự do giữa Hóa Học, Vật Lý và Sinh Học ở cột trái hoặc bấm thử nhanh 1-chạm.',
         [
-          { label: '🧪 CuSO₄ + NaOH', action: "setSandboxSubject('CHEM');runOneClickReaction('CuSO4+NaOH')" },
-          { label: '✨ KI + Pb(NO₃)₂', action: "setSandboxSubject('CHEM');runOneClickReaction('KI+PbNO3')" },
-          { label: '⚡ Sandbox Vật Lý', action: "setSandboxSubject('PHYS')" },
-          { label: '🧬 Sandbox Sinh Học', action: "setSandboxSubject('BIO')" }
+          { label: 'CuSO₄ + NaOH', action: "setSandboxSubject('CHEM');runOneClickReaction('CuSO4+NaOH')" },
+          { label: 'KI + Pb(NO₃)₂', action: "setSandboxSubject('CHEM');runOneClickReaction('KI+PbNO3')" },
+          { label: 'Sandbox Vật Lý', action: "setSandboxSubject('PHYS')" },
+          { label: 'Sandbox Sinh Học', action: "setSandboxSubject('BIO')" }
         ]
       );
     }
@@ -3500,12 +3490,16 @@
       const quickBtn = document.getElementById('benchXrayQuickBtn');
       const quickLbl = document.getElementById('benchXrayQuickLabel');
       if (quickBtn && quickLbl) {
-        quickLbl.textContent = s.xrayMode
-          ? (isEn ? 'Ion Loupe: ON' : 'Kính lúp: ON')
-          : (isEn ? 'Ion Loupe' : 'Kính lúp Ion');
+        if (s.activeTab === 'PHYS') {
+          quickLbl.textContent = s.xrayMode ? (isEn ? 'Vectors: ON' : 'Vector Lực: ON') : (isEn ? 'Force Vectors' : 'Soi Vector Lực');
+        } else if (s.activeTab === 'BIO') {
+          quickLbl.textContent = s.xrayMode ? (isEn ? 'Bio Scanner: ON' : 'Vi cấu trúc: ON') : (isEn ? 'Bio Ultrastructure' : 'Soi Vi Cấu Trúc');
+        } else {
+          quickLbl.textContent = s.xrayMode ? (isEn ? 'Ion Loupe: ON' : 'Kính lúp: ON') : (isEn ? 'Ion Loupe' : 'Kính lúp Ion');
+        }
         quickBtn.className = s.xrayMode
-          ? 'px-2.5 py-1 rounded-xl bg-purple-600 text-white border border-purple-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all'
-          : 'px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-purple-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
+          ? 'px-2.5 py-1 rounded-lg bg-purple-600 text-white border border-purple-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all'
+          : 'px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-purple-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
       }
     }
 
@@ -3586,7 +3580,7 @@
           </div>
           ${t.formula ? `<div class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 font-mono text-[11px] text-sky-400 font-semibold">${t.formula}</div>` : ''}
           <p class="text-[11px] text-slate-300 leading-relaxed">${t.desc}</p>
-          ${t.note ? `<div class="text-[10px] text-amber-300/95 font-medium bg-amber-950/30 px-2.5 py-1.5 rounded-xl border border-amber-900/40">💡 <strong>Ứng dụng thi THPT:</strong> ${t.note}</div>` : ''}
+          ${t.note ? `<div class="text-[10px] text-amber-300/95 font-medium bg-amber-950/30 px-2.5 py-1.5 rounded-xl border border-amber-900/40"><strong>Ứng dụng thi THPT:</strong> ${t.note}</div>` : ''}
         </div>
       `).join('');
     }
@@ -3610,7 +3604,7 @@
             <div class="text-[10px] text-slate-400">${r.phenom}</div>
           </div>
           <button onclick="closeModal('guideModal'); runOneClickReaction('${r.key}')" class="shrink-0 px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors">
-            <span>⚡ Thử ngay</span>
+            <span>Thử ngay</span>
           </button>
         </div>
       `).join('');
@@ -3738,6 +3732,7 @@
       precipitateParticles2D = [];
       bubbles2D = [];
       steam2D = [];
+      if (typeof resetScreenShake === 'function') resetScreenShake();
 
       triggerBeakerDissolve('rgba(56, 189, 248, 0.25)', '#38bdf8');
       updateActiveVesselPills();
@@ -3817,6 +3812,15 @@
 
       const primEl = document.getElementById('chartPrimaryMetric');
       if (primEl && s.activeTab === 'CHEM') primEl.textContent = 'pH: ' + (s.chem.pH || 7.0).toFixed(2);
+
+      // Subtle screen shake for strong/vigorous reactions in CHEM_A_VESSEL (e.g. H2SO4_conc + Sugar carbon tower or strong exothermic reactions)
+      if (s.engine2D === 'CHEM_A_VESSEL' && typeof triggerScreenShake === 'function') {
+        if (rule.carbonTower) {
+          triggerScreenShake(4.2, 1.45);
+        } else if (rule.deltaT && rule.deltaT >= 12) {
+          triggerScreenShake(Math.min(3.6, 1.6 + rule.deltaT * 0.06), 0.75);
+        }
+      }
 
       triggerBeakerDissolve(rule.color, rule.precipitateColor || rule.color);
     }
@@ -4205,7 +4209,7 @@
         html = `
           <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3">
             <button onclick="triggerLessonPrimaryReaction()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-sky-600 hover:from-amber-400 hover:to-sky-500 text-white font-extrabold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all transform active:scale-95 cursor-pointer">
-              <span>⚡ ${isEn ? 'Trigger Primary Reaction' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
+              <span>${isEn ? 'Trigger Primary Reaction' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
             </button>
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-700 dark:text-slate-300">${isEn ? 'Vessel Temp (T):' : 'Nhiệt độ bình (T):'}</span>
@@ -4229,7 +4233,7 @@
         html = `
           <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3">
             <button onclick="triggerLessonPrimaryReaction()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-extrabold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all transform active:scale-95 cursor-pointer">
-              <span>⚡ ${isEn ? 'Trigger Physics Simulation' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
+              <span>${isEn ? 'Trigger Physics Simulation' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
             </button>
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-slate-700 dark:text-slate-300">${isEn ? 'Launch / Slope Angle (α):' : 'Góc bắn / Góc nghiêng (α):'}</span>
@@ -4342,8 +4346,8 @@
               </div>
               <input type="range" min="10" max="100" step="5" value="${s.bio.synapseFreqHz || 50}" oninput="window.currentLabState.bio.synapseFreqHz=parseFloat(this.value);document.getElementById('ctrlSynHzVal').textContent=this.value+' Hz';updateTopSensorReadout();recordMeasurementSnapshot();" class="w-full accent-sky-500 cursor-pointer">
               <div class="grid grid-cols-2 gap-1.5 pt-1">
-                <button onclick="window.currentLabState.bio.neurotransmitterType='ACH';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();" class="py-1.5 px-2 rounded-lg text-[10px] font-bold cursor-pointer ${s.bio.neurotransmitterType!=='GABA' ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">⚡ Acetylcholine</button>
-                <button onclick="window.currentLabState.bio.neurotransmitterType='GABA';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();" class="py-1.5 px-2 rounded-lg text-[10px] font-bold cursor-pointer ${s.bio.neurotransmitterType==='GABA' ? 'bg-rose-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">🛑 GABA (Ức chế)</button>
+                <button onclick="window.currentLabState.bio.neurotransmitterType='ACH';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();" class="py-1.5 px-2 rounded-lg text-[10px] font-bold cursor-pointer ${s.bio.neurotransmitterType!=='GABA' ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">Acetylcholine (ACh)</button>
+                <button onclick="window.currentLabState.bio.neurotransmitterType='GABA';renderLeftControls();renderBenchApparatusDock();updateTopSensorReadout();" class="py-1.5 px-2 rounded-lg text-[10px] font-bold cursor-pointer ${s.bio.neurotransmitterType==='GABA' ? 'bg-rose-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">GABA (Ức chế)</button>
               </div>
             `;
           } else {
@@ -4354,8 +4358,8 @@
               </div>
               <input type="range" min="40" max="150" step="2" value="${s.bio.heartRateBpm}" oninput="window.currentLabState.bio.heartRateBpm=parseFloat(this.value);document.getElementById('ctrlBpmVal').textContent=this.value+' BPM';updateTopSensorReadout();recordMeasurementSnapshot();" class="w-full accent-rose-500 cursor-pointer">
               <div class="grid grid-cols-2 gap-1.5 pt-1">
-                <button onclick="injectHormone('ADRENALINE')" class="py-1.5 px-2 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-xs font-bold cursor-pointer">💉 Adrenaline (+BPM)</button>
-                <button onclick="injectHormone('ACETYLCHOLINE')" class="py-1.5 px-2 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-xs font-bold cursor-pointer">💧 Acetylcholine (-BPM)</button>
+                <button onclick="injectHormone('ADRENALINE')" class="py-1.5 px-2 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 text-xs font-bold cursor-pointer">Adrenaline (+BPM)</button>
+                <button onclick="injectHormone('ACETYLCHOLINE')" class="py-1.5 px-2 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 text-xs font-bold cursor-pointer">Acetylcholine (-BPM)</button>
               </div>
             `;
           }
@@ -4390,12 +4394,12 @@
           } else if (s.subType === 'LOTKA_VOLTERRA') {
             bioSpecificHtml = `
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">🐇 ${isEn ? 'Prey (Rabbits):' : 'Quần thể Con mồi (Thỏ):'}</span>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">${isEn ? 'Prey (Rabbits):' : 'Quần thể Con mồi (Thỏ):'}</span>
                 <span class="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400" id="ctrlRabbitVal">${s.bio.rabbitPop || 120}</span>
               </div>
               <input type="range" min="40" max="260" step="10" value="${s.bio.rabbitPop || 120}" oninput="window.currentLabState.bio.rabbitPop=parseFloat(this.value);document.getElementById('ctrlRabbitVal').textContent=this.value;updateTopSensorReadout();" class="w-full accent-emerald-500 cursor-pointer">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">🐺 ${isEn ? 'Predator (Wolves):' : 'Quần thể Sói ăn thịt:'}</span>
+                <span class="text-xs font-bold text-slate-700 dark:text-slate-300">${isEn ? 'Predator (Wolves):' : 'Quần thể Sói ăn thịt:'}</span>
                 <span class="font-mono text-xs font-bold text-rose-600 dark:text-rose-400" id="ctrlWolfVal">${s.bio.wolfPop || 28}</span>
               </div>
               <input type="range" min="10" max="80" step="2" value="${s.bio.wolfPop || 28}" oninput="window.currentLabState.bio.wolfPop=parseFloat(this.value);document.getElementById('ctrlWolfVal').textContent=this.value;updateTopSensorReadout();" class="w-full accent-rose-500 cursor-pointer">
@@ -4413,7 +4417,7 @@
         html = `
           <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3">
             <button onclick="triggerLessonPrimaryReaction()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs shadow-xs flex items-center justify-center gap-1.5 transition-all transform active:scale-95 cursor-pointer">
-              <span>⚡ ${isEn ? 'Trigger Bio Simulation' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
+              <span>${isEn ? 'Trigger Bio Simulation' : 'Kích Hoạt Thí Nghiệm Của Bài'}</span>
             </button>
             ${bioSpecificHtml}
           </div>
@@ -4438,13 +4442,13 @@
           class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 hover:bg-sky-50 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500/60 cursor-grab active:cursor-grabbing transition-all flex items-center justify-between group shadow-2xs"
         >
           <div class="flex items-center gap-2.5 min-w-0">
-            <span class="text-lg shrink-0">${item.icon}</span>
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 border border-slate-400/40" style="background:${item.color}"></span>
             <div class="min-w-0">
               <div class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-300 truncate transition-colors">${isEn && item.nameEn ? item.nameEn : item.name}</div>
               <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate">${isEn && item.descEn ? item.descEn : item.desc}</div>
             </div>
           </div>
-          <span class="w-2.5 h-2.5 rounded-full shrink-0 ml-2 border border-slate-400/30" style="background:${item.color}"></span>
+          <span class="text-[10px] font-mono font-bold text-slate-400 group-hover:text-sky-500 shrink-0 ml-2">+</span>
         </div>
       `).join('');
     }
@@ -4492,7 +4496,7 @@
       s.chem.benchBurnerLit = !s.chem.benchBurnerLit;
       updateBenchBurnerUI();
       if (s.chem.benchBurnerLit) {
-        logAction('🔥 Đã châm lửa đèn cồn dưới đáy bình. Nhiệt độ dung dịch đang tăng lên...');
+        logAction('Đã châm lửa đèn cồn dưới đáy bình. Nhiệt độ dung dịch đang tăng lên...');
       } else {
         logAction('Đã đậy nắp tắt đèn cồn.');
       }
@@ -4506,10 +4510,10 @@
       if (!btn || !lbl) return;
       if (s.chem.benchBurnerLit) {
         lbl.textContent = isEn ? 'Burner: HEATING' : 'Đèn cồn: ĐANG ĐUN';
-        btn.className = 'px-2.5 py-1 rounded-xl bg-amber-600 text-white border border-amber-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all';
+        btn.className = 'px-2.5 py-1 rounded-lg bg-amber-600 text-white border border-amber-400 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer shadow-xs transition-all';
       } else {
         lbl.textContent = isEn ? 'Burner: OFF' : 'Đèn cồn: TẮT';
-        btn.className = 'px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
+        btn.className = 'px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-[11px] font-bold flex items-center gap-1 shrink-0 cursor-pointer transition-all';
       }
     }
 
@@ -4992,6 +4996,12 @@
 
       if (s.chem.sugarCarbonHeight > 0 && s.chem.sugarCarbonHeight < 1.0) {
         s.chem.sugarCarbonHeight = Math.min(1.0, s.chem.sugarCarbonHeight + dt * 0.35);
+        // Maintain a gentle rumble while the sugar carbon tower expands vigorously in CHEM_A_VESSEL
+        if (s.engine2D === 'CHEM_A_VESSEL' && s.chem.sugarCarbonHeight < 0.96) {
+          screenShake2D.timer = Math.max(screenShake2D.timer, 0.18);
+          screenShake2D.duration = Math.max(screenShake2D.duration, 0.6);
+          screenShake2D.intensity = Math.max(screenShake2D.intensity, 2.4 * (1.05 - s.chem.sugarCarbonHeight));
+        }
       }
 
       if (s.chem.znPlateInserted && (s.sandboxReagents.includes('CuSO4') || s.lessonId === 'chem_10_2')) {
@@ -5003,9 +5013,45 @@
         s.chem.turbidityAlpha = Math.min(0.96, s.chem.turbidityAlpha + dt * 0.08 * speedFactor);
       }
 
+      // Update 2D Screen Shake physics for vigorous CHEM_A_VESSEL reactions
+      if (screenShake2D.timer > 0 && s.engine2D === 'CHEM_A_VESSEL') {
+        screenShake2D.timer = Math.max(0, screenShake2D.timer - dt);
+        const decay = screenShake2D.duration > 0 ? (screenShake2D.timer / screenShake2D.duration) : 0;
+        const amp = screenShake2D.intensity * Math.pow(decay, 0.75);
+        const phase = performance.now() * 0.048;
+        screenShake2D.offsetX = (Math.sin(phase * 1.7) * 0.65 + (Math.random() - 0.5) * 0.7) * amp;
+        screenShake2D.offsetY = (Math.cos(phase * 2.3) * 0.65 + (Math.random() - 0.5) * 0.7) * amp;
+      } else {
+        screenShake2D.offsetX = 0;
+        screenShake2D.offsetY = 0;
+        if (screenShake2D.timer <= 0) screenShake2D.intensity = 0;
+      }
+
       // 6. CONTINUOUS CARDIAC ECG PHASE & BIO DYNAMICS
       const bps = (s.bio.heartRateBpm || 75) / 60;
       s.bio.ecgPhase = ((s.bio.ecgPhase || 0) + dt * bps) % 1.0;
+    }
+
+    const screenShake2D = {
+      timer: 0,
+      duration: 0,
+      intensity: 0,
+      offsetX: 0,
+      offsetY: 0
+    };
+
+    function triggerScreenShake(intensity = 3.2, duration = 0.85) {
+      screenShake2D.intensity = Math.max(screenShake2D.intensity, intensity);
+      screenShake2D.duration = Math.max(screenShake2D.duration, duration);
+      screenShake2D.timer = Math.max(screenShake2D.timer, duration);
+    }
+
+    function resetScreenShake() {
+      screenShake2D.timer = 0;
+      screenShake2D.duration = 0;
+      screenShake2D.intensity = 0;
+      screenShake2D.offsetX = 0;
+      screenShake2D.offsetY = 0;
     }
 
     function triggerBeakerDissolve(targetHex, plumeHex) {
@@ -5119,7 +5165,12 @@
       // Route to active 2D Sub-Engine
       switch (s.engine2D) {
         case 'CHEM_A_VESSEL':
+          ctx.save();
+          if (Math.abs(screenShake2D.offsetX) > 0.04 || Math.abs(screenShake2D.offsetY) > 0.04) {
+            ctx.translate(screenShake2D.offsetX, screenShake2D.offsetY);
+          }
           drawEngineChemAVessel(ctx, W, H, s, benchY, dt);
+          ctx.restore();
           break;
         case 'CHEM_B_TITRATION':
           drawEngineChemBTitration(ctx, W, H, s, benchY, dt);
@@ -7520,18 +7571,175 @@
     }
 
     /*********************************************************************
-     * L. 36 DISTINCT PROCEDURAL 3D MODELS IN THREE.JS (DYNAMIC PER LESSON)
+     * L. 36 DISTINCT PROCEDURAL 3D MODELS & AUGMENTED REALITY (AR) ENGINE
      *********************************************************************/
-    let threeScene = null, threeCamera = null, threeRenderer = null, threeRootGroup = null;
+    let threeScene = null, threeCamera = null, threeRenderer = null, threeRootGroup = null, threeArReticleGroup = null;
     let isDragging3D = false, prevMouse3D = { x: 0, y: 0 };
+    let threeAutoRotate = true;
+    let threeUserScale = 1.0;
+    let arCameraStream = null;
+    let arFacingMode = 'environment';
+    let arModeActive = false;
 
     function reset3DCameraView() {
+      threeUserScale = 1.0;
       if (threeCamera) {
         threeCamera.position.set(0, 1.4, 6.4);
         threeCamera.lookAt(0, 0, 0);
       }
       if (threeRootGroup) {
         threeRootGroup.rotation.set(0.15, 0.35, 0);
+        threeRootGroup.scale.set(1, 1, 1);
+      }
+    }
+
+    function adjust3DModelScale(delta) {
+      threeUserScale = Math.min(2.2, Math.max(0.45, threeUserScale + delta));
+      if (threeRootGroup) {
+        threeRootGroup.scale.set(threeUserScale, threeUserScale, threeUserScale);
+      }
+    }
+
+    function toggle3DAutoRotate() {
+      threeAutoRotate = !threeAutoRotate;
+      updateARControlLabels();
+    }
+
+    function updateARControlLabels() {
+      const isEn = window.currentLabState && window.currentLabState.lang === 'en';
+      const rotBtn = document.getElementById('autoRotate3DBtn');
+      if (rotBtn) {
+        rotBtn.textContent = threeAutoRotate
+          ? (isEn ? 'Auto-Rotate: ON' : 'Tự xoay: ON')
+          : (isEn ? 'Auto-Rotate: OFF' : 'Tự xoay: OFF');
+      }
+      const arBtn = document.getElementById('arToggleInside3DBtn');
+      if (arBtn) {
+        if (arModeActive) {
+          arBtn.textContent = isEn ? 'Stop AR Camera' : 'Tắt Camera AR';
+          arBtn.className = 'px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-[11px] font-bold cursor-pointer transition-colors shadow-xs';
+        } else {
+          arBtn.textContent = isEn ? 'Start AR Camera' : 'Bật Camera AR';
+          arBtn.className = 'px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold cursor-pointer transition-colors shadow-xs';
+        }
+      }
+      const switchBtn = document.getElementById('arSwitchCamBtn');
+      if (switchBtn) {
+        switchBtn.textContent = isEn ? 'Switch Camera' : 'Đổi Camera';
+      }
+    }
+
+    async function startARCameraStream() {
+      const videoEl = document.getElementById('arCameraFeed');
+      const gridOverlay = document.getElementById('arSpatialGridOverlay');
+      const statusBadge = document.getElementById('arStatusBadge');
+      const statusText = document.getElementById('arCameraStatusText');
+      const switchCamBtn = document.getElementById('arSwitchCamBtn');
+      const isEn = window.currentLabState && window.currentLabState.lang === 'en';
+
+      arModeActive = true;
+      if (gridOverlay) gridOverlay.classList.remove('hidden');
+      if (statusBadge) {
+        statusBadge.classList.remove('hidden');
+        statusBadge.classList.add('inline-flex');
+      }
+      if (threeArReticleGroup) threeArReticleGroup.visible = true;
+      if (threeRenderer) threeRenderer.setClearColor(0x000000, 0);
+      updateARControlLabels();
+
+      // Stop any previous stream before requesting a new one
+      if (arCameraStream) {
+        arCameraStream.getTracks().forEach(t => t.stop());
+        arCameraStream = null;
+      }
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        if (statusText) {
+          statusText.textContent = isEn
+            ? 'AR Spatial Grid Mode (Camera API unavailable on this browser)'
+            : 'Chế độ Lưới Không Gian AR (Trình duyệt không hỗ trợ Camera trực tiếp)';
+        }
+        return;
+      }
+
+      try {
+        if (statusText) {
+          statusText.textContent = isEn ? 'Connecting to device camera...' : 'Đang kết nối Camera thiết bị...';
+        }
+        let stream = null;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: arFacingMode }, width: { ideal: 1280 }, height: { ideal: 720 } },
+            audio: false
+          });
+        } catch (innerErr) {
+          stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        }
+
+        arCameraStream = stream;
+        if (videoEl) {
+          videoEl.srcObject = stream;
+          videoEl.classList.remove('hidden');
+          await videoEl.play().catch(() => {});
+        }
+        if (switchCamBtn) switchCamBtn.classList.remove('hidden');
+        if (statusText) {
+          statusText.textContent = isEn
+            ? 'AR Live Camera Active — Drag to position & scroll to scale 3D model in real space'
+            : 'AR Camera Đang Hoạt Động — Kéo để xoay & cuộn chuột để phóng to mô hình 3D ngoài đời thực';
+        }
+        logAction(isEn
+          ? 'Activated Augmented Reality (AR) mode using live device camera.'
+          : 'Đã kích hoạt chế độ Thực Tế Ảo Tăng Cường (AR) chiếu mô hình 3D lên môi trường thật.');
+      } catch (err) {
+        if (videoEl) videoEl.classList.add('hidden');
+        if (switchCamBtn) switchCamBtn.classList.add('hidden');
+        if (statusText) {
+          statusText.textContent = isEn
+            ? 'AR Spatial Surface Simulation (Allow camera permission for live video feed)'
+            : 'Mô phỏng mặt phẳng không gian AR (Cấp quyền Camera để chiếu lên bàn thật)';
+        }
+      }
+    }
+
+    function stopARCameraStream() {
+      arModeActive = false;
+      const videoEl = document.getElementById('arCameraFeed');
+      const gridOverlay = document.getElementById('arSpatialGridOverlay');
+      const statusBadge = document.getElementById('arStatusBadge');
+      const switchCamBtn = document.getElementById('arSwitchCamBtn');
+
+      if (arCameraStream) {
+        arCameraStream.getTracks().forEach(t => t.stop());
+        arCameraStream = null;
+      }
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.srcObject = null;
+        videoEl.classList.add('hidden');
+      }
+      if (gridOverlay) gridOverlay.classList.add('hidden');
+      if (statusBadge) {
+        statusBadge.classList.add('hidden');
+        statusBadge.classList.remove('inline-flex');
+      }
+      if (switchCamBtn) switchCamBtn.classList.add('hidden');
+      if (threeArReticleGroup) threeArReticleGroup.visible = false;
+      updateARControlLabels();
+    }
+
+    function toggleARMode() {
+      if (arModeActive) {
+        setViewMode('3d');
+      } else {
+        setViewMode('ar');
+      }
+    }
+
+    async function switchARCameraFacing() {
+      arFacingMode = arFacingMode === 'environment' ? 'user' : 'environment';
+      if (arModeActive) {
+        await startARCameraStream();
       }
     }
 
@@ -7545,23 +7753,43 @@
       threeCamera.lookAt(0, 0, 0);
 
       threeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      threeRenderer.setClearColor(0x000000, 0);
+      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       threeRenderer.setSize(mount.clientWidth || 500, mount.clientHeight || 350);
       mount.innerHTML = '';
       mount.appendChild(threeRenderer.domElement);
 
-      const amb = new THREE.AmbientLight(0xffffff, 0.9);
+      const amb = new THREE.AmbientLight(0xffffff, 0.95);
       const dir = new THREE.DirectionalLight(0x38bdf8, 1.35);
       dir.position.set(5, 8, 6);
       const dir2 = new THREE.DirectionalLight(0xfacc15, 0.65);
       dir2.position.set(-5, -4, 4);
       threeScene.add(amb, dir, dir2);
 
+      // 3D Spatial AR Surface Reticle Ring beneath model
+      threeArReticleGroup = new THREE.Group();
+      const outerRing = new THREE.Mesh(
+        new THREE.RingGeometry(1.75, 1.88, 48),
+        new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
+      );
+      outerRing.rotation.x = -Math.PI / 2;
+      const innerRing = new THREE.Mesh(
+        new THREE.RingGeometry(1.05, 1.12, 48),
+        new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
+      );
+      innerRing.rotation.x = -Math.PI / 2;
+      const polarGrid = new THREE.PolarGridHelper(1.75, 8, 4, 48, 0x10b981, 0x38bdf8);
+      threeArReticleGroup.add(outerRing, innerRing, polarGrid);
+      threeArReticleGroup.position.set(0, -1.55, 0);
+      threeArReticleGroup.visible = false;
+      threeScene.add(threeArReticleGroup);
+
       threeRootGroup = new THREE.Group();
       threeScene.add(threeRootGroup);
 
-      mount.addEventListener('mousedown', e => { isDragging3D = true; prevMouse3D = { x: e.clientX, y: e.clientY }; });
-      window.addEventListener('mouseup', () => { isDragging3D = false; });
-      window.addEventListener('mousemove', e => {
+      mount.addEventListener('pointerdown', e => { isDragging3D = true; prevMouse3D = { x: e.clientX, y: e.clientY }; });
+      window.addEventListener('pointerup', () => { isDragging3D = false; });
+      window.addEventListener('pointermove', e => {
         if (!isDragging3D || !threeRootGroup) return;
         threeRootGroup.rotation.y += (e.clientX - prevMouse3D.x) * 0.01;
         threeRootGroup.rotation.x += (e.clientY - prevMouse3D.y) * 0.01;
@@ -7570,7 +7798,7 @@
       mount.addEventListener('wheel', e => {
         if (!threeCamera) return;
         e.preventDefault();
-        threeCamera.position.z = Math.min(11, Math.max(3.2, threeCamera.position.z + e.deltaY * 0.004));
+        threeCamera.position.z = Math.min(11, Math.max(3.0, threeCamera.position.z + e.deltaY * 0.004));
       }, { passive: false });
 
       build3DSceneForCurrentState();
@@ -7594,7 +7822,7 @@
       const matDark = new THREE.MeshPhysicalMaterial({ color: 0x1e293b, roughness: 0.4, metalness: 0.4 });
 
       let title3D = 'Mô hình 3D Tương Tác';
-      let desc3D = 'Kéo chuột xoay 360° để quan sát cấu trúc không gian 3 chiều.';
+      let desc3D = 'Kéo chuột xoay 360° hoặc bật AR để đặt mô hình vào không gian thực tế.';
 
       // ===============================================================
       // 1. BIOLOGY 3D MODELS (DISTINCT PER SUBTYPE)
@@ -7696,8 +7924,8 @@
               threeRootGroup.add(leaf);
             }
           }
-        } else if (sub === 'CELL_ORGANELLES' || sub === 'OSMOSIS_PLASMOLYSIS') {
-          title3D = 'Mô hình 3D Cấu Trúc Tế Bào Thực Vật & Bào Quan';
+        } else if (sub === 'ORGANELLES_VIEW' || sub === 'ONION_PLASMOLYSIS' || sub === 'CELL_ORGANELLES' || sub === 'OSMOSIS_PLASMOLYSIS') {
+          title3D = 'Mô hình 3D Cấu Trúc Tế Bào & Các Bào Quan';
           desc3D = 'Thành tế bào lục giác, không bào trung tâm lớn, nhân tế bào (tím) và các lục lạp (xanh).';
           const wall = new THREE.Mesh(new THREE.CylinderGeometry(1.65, 1.65, 0.85, 6), matGlass);
           wall.rotation.x = Math.PI / 2;
@@ -7756,23 +7984,20 @@
       // 2. PHYSICS 3D MODELS (INCLUDING 3D MAGNETIC FLUX LINES B⃗)
       // ===============================================================
       else if (s.activeTab === 'PHYS') {
-        if (sub === 'FARADAY_COIL' || eng === 'PHYS_C_ELECTROMAG') {
+        if (sub === 'FARADAY_COIL' || sub === 'FARADAY_INDUCTION' || eng === 'PHYS_C_ELECTROMAG') {
           title3D = 'Mô hình 3D Ống Dây Cảm Ứng Faraday & Đường Sức Từ Trường (B⃗)';
           desc3D = 'Nam châm N-S xuyên qua cuộn dây đồng kèm hệ thống 8 đường sức từ trường khép kín (B⃗) bao quanh.';
-          // Copper Solenoid Helical Loops
           for (let i = -4; i <= 4; i++) {
             const loop = new THREE.Mesh(new THREE.TorusGeometry(0.95, 0.065, 16, 36), matGold);
             loop.rotation.y = Math.PI / 2;
             loop.position.set(i * 0.26, 0, 0);
             threeRootGroup.add(loop);
           }
-          // N-S Bar Magnet
           const magN = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.48, 0.48), matPink);
           magN.position.set(-0.9, 0, 0);
           const magS = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.48, 0.48), matCyan);
           magS.position.set(-2.0, 0, 0);
           threeRootGroup.add(magN, magS);
-          // 8 3D Magnetic Field Flux Lines (Đường sức từ B⃗)
           for (let k = 0; k < 8; k++) {
             const ang = (k / 8) * Math.PI * 2;
             const fluxRing = new THREE.Mesh(new THREE.TorusGeometry(1.45, 0.022, 12, 48), matCyan);
@@ -7798,7 +8023,7 @@
             rayOut.position.set(1.2, ry * 0.5, 0);
             threeRootGroup.add(rayIn, rayOut);
           });
-        } else if (sub === 'IDEAL_GAS') {
+        } else if (sub === 'IDEAL_GAS' || sub === 'IDEAL_GAS_PISTON') {
           title3D = 'Mô hình 3D Xilanh Khí Lý Tưởng & Chuyển Động Nhiệt Phân Tử';
           desc3D = 'Các phân tử khí chuyển động hỗn loạn va chạm vào thành bình và Pít-tông sinh ra áp suất P.';
           const cyl = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 2.6, 28), matGlass);
@@ -7819,7 +8044,7 @@
             bar.position.set(x, Math.sin(i * 0.55) * 0.95, Math.cos(i * 0.55) * 0.45);
             threeRootGroup.add(bar);
           }
-        } else if (sub === 'PENDULUM_SHM' || sub === 'HOOKE_SPRING') {
+        } else if (sub === 'PENDULUM_SHM' || sub === 'HARMONIC_PENDULUM' || sub === 'HOOKE_SPRING') {
           title3D = 'Mô hình 3D Con Lắc Đơn & Dao Động Điều Hòa';
           desc3D = 'Sự chuyển hóa tuần hoàn giữa Động năng và Thế năng trọng trường.';
           const topBar = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.18, 0.4), matDark);
@@ -7881,7 +8106,7 @@
               }
             }
           }
-        } else if (sub === 'SUGAR_CARBON') {
+        } else if (sub === 'SUGAR_CARBON' || sub === 'SULFURIC_SUGAR') {
           title3D = 'Mô hình 3D Cột Than Xốp Cacbon (H₂SO₄ Đặc Háo Nước)';
           desc3D = 'Khối than C(r) đen xốp dâng trào khỏi cốc thủy tinh kèm khí SO₂ và CO₂.';
           const beaker = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.1, 1.6, 28), matGlass);
@@ -7908,31 +8133,61 @@
       const tagEl = document.getElementById('threeModelTagBadge');
       const titleEl = document.getElementById('threeModelTitleBadge');
       const subEl = document.getElementById('threeModelSubBadge');
-      if (tagEl) tagEl.textContent = `3D · ${s.activeTab} · ${sub || eng}`;
+      if (tagEl) tagEl.textContent = `${arModeActive ? 'AR · 3D' : '3D'} · ${s.activeTab} · ${sub || eng}`;
       if (titleEl) titleEl.textContent = title3D;
       if (subEl) subEl.textContent = desc3D;
     }
 
     function setViewMode(mode) {
-      window.currentLabState.viewMode = mode.toUpperCase();
+      const m = (mode || '2d').toLowerCase();
+      window.currentLabState.viewMode = m.toUpperCase();
       const b2 = document.getElementById('viewModeBtn-2d');
       const b3 = document.getElementById('viewModeBtn-3d');
+      const bar = document.getElementById('viewModeBtn-ar');
       const c2 = document.getElementById('canvas2DContainer');
       const c3 = document.getElementById('canvas3DContainer');
+      const inactiveCls = 'px-3 py-1 rounded-md text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer';
 
-      if (mode.toLowerCase() === '2d') {
-        if (b2) b2.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer';
-        if (b3) b3.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white cursor-pointer';
+      if (m === '2d') {
+        stopARCameraStream();
+        if (b2) b2.className = 'px-3 py-1 rounded-md text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer';
+        if (b3) b3.className = inactiveCls;
+        if (bar) bar.className = inactiveCls;
         if (c2) c2.classList.remove('hidden');
         if (c3) c3.classList.add('hidden');
-      } else {
-        if (b3) b3.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer';
-        if (b2) b2.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white cursor-pointer';
+      } else if (m === 'ar') {
+        if (b2) b2.className = inactiveCls;
+        if (b3) b3.className = inactiveCls;
+        if (bar) bar.className = 'px-3 py-1 rounded-md text-xs font-bold transition-all bg-emerald-600 text-white cursor-pointer';
         if (c3) c3.classList.remove('hidden');
         if (c2) c2.classList.add('hidden');
         if (threeRenderer) {
           const mount = document.getElementById('threeMount');
-          if (mount) threeRenderer.setSize(mount.clientWidth, mount.clientHeight);
+          if (mount && mount.clientWidth > 0 && mount.clientHeight > 0) {
+            threeRenderer.setSize(mount.clientWidth, mount.clientHeight);
+            if (threeCamera) {
+              threeCamera.aspect = mount.clientWidth / mount.clientHeight;
+              threeCamera.updateProjectionMatrix();
+            }
+          }
+        }
+        startARCameraStream();
+      } else {
+        stopARCameraStream();
+        if (b3) b3.className = 'px-3 py-1 rounded-md text-xs font-bold transition-all bg-sky-600 text-white cursor-pointer';
+        if (b2) b2.className = inactiveCls;
+        if (bar) bar.className = inactiveCls;
+        if (c3) c3.classList.remove('hidden');
+        if (c2) c2.classList.add('hidden');
+        if (threeRenderer) {
+          const mount = document.getElementById('threeMount');
+          if (mount && mount.clientWidth > 0 && mount.clientHeight > 0) {
+            threeRenderer.setSize(mount.clientWidth, mount.clientHeight);
+            if (threeCamera) {
+              threeCamera.aspect = mount.clientWidth / mount.clientHeight;
+              threeCamera.updateProjectionMatrix();
+            }
+          }
         }
       }
     }
@@ -7947,9 +8202,10 @@
 
     function togglePauseSimulation() {
       const s = window.currentLabState;
+      const isEn = s.lang === 'en';
       s.isPaused = !s.isPaused;
       const btn = document.getElementById('pauseSimBtn');
-      if (btn) btn.textContent = s.isPaused ? '▶ Tiếp tục' : '⏸️ Tạm dừng';
+      if (btn) btn.textContent = s.isPaused ? (isEn ? 'Resume' : 'Tiếp tục') : (isEn ? 'Pause' : 'Tạm dừng');
     }
 
     /*********************************************************************
@@ -8019,7 +8275,7 @@
       if (!box || !exp) return;
       box.innerHTML = `
         <div class="p-3 rounded-xl bg-sky-950/60 border border-sky-800 text-slate-200 leading-relaxed text-xs">
-          <span class="font-bold text-sky-400 block mb-1">🤖 Gia sư AI (${exp.id}):</span>
+          <span class="font-bold text-sky-400 block mb-1">Gia sư AI (${exp.id}):</span>
           ${exp.aiGreeting}
         </div>
       `;
@@ -8057,10 +8313,10 @@
         const reply = document.createElement('div');
         reply.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs leading-relaxed';
         reply.innerHTML = `
-          <span class="font-bold text-sky-400 block mb-1">🤖 Phân tích Socratic:</span>
+          <span class="font-bold text-sky-400 block mb-1">Phân tích Socratic:</span>
           • <strong>Phương trình / Định luật:</strong> <code class="text-amber-300 font-mono">${exp.formula}</code><br/>
           • <strong>Bản chất:</strong> ${exp.goal}<br/>
-          • <strong>Gợi ý:</strong> Bạn hãy thử kéo các thanh trượt bên cột trái hoặc mở tab <strong>Tủ đồ DIY</strong> để quan sát phản ứng trực tiếp nhé!
+          • <strong>Gợi ý:</strong> Bạn hãy thử kéo các thanh trượt bên cột trái, mở tab <strong>Tủ đồ DIY</strong> hoặc bật chế độ <strong>Thực Tế Ảo AR</strong> để quan sát mô hình 3D trực tiếp ngoài đời thực!
         `;
         box.appendChild(reply);
         box.scrollTop = box.scrollHeight;
@@ -8201,7 +8457,6 @@
       const cy = H * 0.36;
 
       if (teaserMode === 'FLAME') {
-        // Ambient Orbital Rings + Emerald Spectral Flame Glow
         const aura = ctx.createRadialGradient(cx, cy, 8, cx, cy, Math.min(W, H) * 0.36);
         aura.addColorStop(0, 'rgba(16, 185, 129, 0.38)');
         aura.addColorStop(0.45, 'rgba(14, 165, 233, 0.14)');
@@ -8230,7 +8485,6 @@
           ctx.restore();
         }
       } else if (teaserMode === 'WAVE') {
-        // Coherent Interference Wave Rings
         for (let i = 1; i <= 7; i++) {
           const rad = ((animClock * 42 + i * 32) % 240);
           const alpha = Math.max(0, 1 - rad / 240) * 0.38;
@@ -8245,7 +8499,6 @@
           ctx.stroke();
         }
       } else {
-        // 400x Cellular Bio-Field
         const cellGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 150);
         cellGrad.addColorStop(0, 'rgba(16, 185, 129, 0.32)');
         cellGrad.addColorStop(0.6, 'rgba(139, 92, 246, 0.14)');
@@ -8313,17 +8566,21 @@
       // 2. Render 2D Workbench & Landing Preview
       draw2DLabScene(dt);
       drawLandingTeaser(dt);
-      // 3. Render 3D Viewport if active
+      // 3. Render 3D & AR Viewport if active
       if (threeRenderer && threeScene && threeCamera && threeRootGroup && !window.currentLabState.isPaused) {
-        if (!isDragging3D) {
-          threeRootGroup.rotation.y += dt * 0.5;
+        if (!isDragging3D && threeAutoRotate) {
+          threeRootGroup.rotation.y += dt * 0.45;
+        }
+        if (threeArReticleGroup && threeArReticleGroup.visible) {
+          threeArReticleGroup.rotation.y -= dt * 0.3;
         }
         const s = window.currentLabState;
+        const baseScale = threeUserScale || 1.0;
         if (s.activeTab === 'BIO' && s.subType === 'HEART_ECG') {
-          const pulse3D = 1 + 0.08 * Math.sin(animClock * ((s.bio.heartRateBpm || 75) / 60) * Math.PI * 2);
+          const pulse3D = baseScale * (1 + 0.08 * Math.sin(animClock * ((s.bio.heartRateBpm || 75) / 60) * Math.PI * 2));
           threeRootGroup.scale.set(pulse3D, pulse3D, pulse3D);
         } else {
-          threeRootGroup.scale.set(1, 1, 1);
+          threeRootGroup.scale.set(baseScale, baseScale, baseScale);
         }
         threeRenderer.render(threeScene, threeCamera);
       }

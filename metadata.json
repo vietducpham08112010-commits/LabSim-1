@@ -1,6 +1,6 @@
 {
   "name": "V-Science 3D & AI Lab",
   "description": "Nền tảng Phòng thí nghiệm Đa giác quan 3D (Vật Lý - Hóa Học - Sinh Học) tích hợp Gia sư AI Socratic theo thời gian thực dành cho học sinh THPT Việt Nam (GDPT 2018).",
-  "requestFramePermissions": [],
+  "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
