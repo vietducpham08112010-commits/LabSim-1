@@ -865,9 +865,10 @@
         VI
       </button>
 
-      <!-- API Key Settings -->
-      <button onclick="openModal('apiKeyModal')" class="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-zinc-300 border border-slate-300 dark:border-white/15 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap" title="Cài đặt Gemini API Key">
-        API
+      <!-- Gemini AI Chatbot Quick Trigger (Server-side Proxy) -->
+      <button onclick="openGlobalChatbot()" class="px-3 py-1.5 rounded-full bg-sky-500/15 hover:bg-sky-500/25 text-sky-600 dark:text-sky-300 border border-sky-500/30 text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5" title="Trò chuyện với Gia sư Gemini AI">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span data-i18n="btn_gemini_chat">Gemini AI</span>
       </button>
 
       <!-- Vesper Solid Liquid-Glass Header CTA -->
@@ -1372,43 +1373,69 @@
       </div>
     </section>
 
-    <!-- 3. RIGHT SIDEBAR: AI CO-PILOT SOCRATIC TUTOR (COLLAPSIBLE ON DESKTOP & TABBED ON MOBILE) -->
-    <aside id="rightSidebar" class="w-full lg:w-[270px] xl:w-72 shrink-0 h-full flex flex-col gap-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 shadow-xs overflow-hidden">
-      <!-- AI Header -->
-      <div class="flex items-center justify-between pb-2.5 border-b border-slate-200 dark:border-slate-800 shrink-0">
-        <div>
-          <div class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="ai_title">Gia Sư AI LabSim</div>
-          <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="ai_sub">Giải thích hiện tượng & Công thức</div>
+    <!-- 3. RIGHT SIDEBAR: GEMINI AI SOCRATIC TUTOR (SERVER-SIDE PROXY, MULTI-TURN) -->
+    <aside id="rightSidebar" class="w-full lg:w-[290px] xl:w-80 shrink-0 h-full flex flex-col gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 shadow-xs overflow-hidden">
+      <!-- AI Header & Model Selector -->
+      <div class="pb-2 border-b border-slate-200 dark:border-slate-800 shrink-0 space-y-2">
+        <div class="flex items-center justify-between gap-1.5">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+            <div class="truncate">
+              <div class="text-xs font-extrabold text-slate-900 dark:text-white truncate" data-i18n="ai_title">Gia Sư Gemini AI</div>
+              <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="ai_sub">API Gián Tiếp · Bảo mật Server</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="clearAIChatHistory()" class="px-2 py-0.5 rounded-md bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-semibold cursor-pointer transition-colors" title="Xóa lịch sử trò chuyện" data-i18n="ai_clear_btn">
+              Mới
+            </button>
+            <button onclick="toggleAISidebar()" class="hidden lg:inline-flex text-slate-400 hover:text-slate-700 dark:hover:text-white text-xs cursor-pointer px-1" title="Thu gọn">✕</button>
+          </div>
         </div>
-        <button onclick="toggleAISidebar()" class="hidden lg:inline-flex text-slate-400 hover:text-slate-700 text-xs cursor-pointer px-1" title="Thu gọn">✕</button>
+
+        <!-- Model Tier Selector (Fast / General / Deep STEM) -->
+        <div class="flex items-center justify-between gap-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px]">
+          <button onclick="setGeminiModelTier('gemini-3.1-flash-lite')" data-gemini-model="gemini-3.1-flash-lite" class="gemini-model-btn flex-1 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 cursor-pointer transition-all" title="Phản hồi cực nhanh (gemini-3.1-flash-lite)">
+            Lite 3.1
+          </button>
+          <button onclick="setGeminiModelTier('gemini-3.8-flash')" data-gemini-model="gemini-3.8-flash" class="gemini-model-btn flex-1 py-1 rounded-lg font-bold bg-sky-600 text-white cursor-pointer transition-all" title="Đa năng chuẩn xác (gemini-3.8-flash)">
+            Flash 3.8
+          </button>
+          <button onclick="setGeminiModelTier('gemini-4-argon')" data-gemini-model="gemini-4-argon" class="gemini-model-btn flex-1 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 cursor-pointer transition-all" title="Suy luận STEM chuyên sâu (gemini-4-argon)">
+            Argon 4.0
+          </button>
+        </div>
       </div>
 
       <!-- Clean Text Quick Prompt Chips -->
-      <div class="grid grid-cols-3 gap-1.5 shrink-0">
+      <div class="grid grid-cols-2 gap-1.5 shrink-0">
         <button onclick="askQuickPrompt('EXPLAIN')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-sky-700 dark:text-sky-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_explain">
-          Bản chất
+          Giải thích bản chất
         </button>
         <button onclick="askQuickPrompt('PREDICT')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_predict">
-          Dự đoán
+          Dự đoán hiện tượng
+        </button>
+        <button onclick="askQuickPrompt('FORMULA')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-purple-700 dark:text-purple-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_formula">
+          Phân tích công thức
         </button>
         <button onclick="askQuickPrompt('QUIZ_1')" class="py-1.5 px-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 truncate cursor-pointer" data-i18n="ai_chip_quiz">
-          Câu đố
+          Đố vui nhanh
         </button>
       </div>
 
-      <!-- Chat History -->
-      <div id="aiChatMessages" class="flex-1 overflow-y-auto space-y-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs"></div>
+      <!-- Scrollable Multi-Turn Chat History -->
+      <div id="aiChatMessages" class="flex-1 overflow-y-auto space-y-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs"></div>
 
       <!-- Chat Input Box -->
       <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex gap-1.5 shrink-0">
         <input
           id="aiChatInput"
           type="text"
-          placeholder="Hỏi Gia sư AI về thí nghiệm..."
+          placeholder="Hỏi Gia sư Gemini về thí nghiệm..."
           class="flex-1 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-sky-500"
-          onkeydown="if(event.key==='Enter') sendUserChatMessage()"
+          onkeydown="if(event.key==='Enter') sendUserChatMessage('aiChatInput')"
         />
-        <button onclick="sendUserChatMessage()" class="px-3 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition-colors cursor-pointer">
+        <button id="aiChatSendBtn" onclick="sendUserChatMessage('aiChatInput')" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-colors cursor-pointer shrink-0" data-i18n="ai_send_btn">
           Gửi
         </button>
       </div>
@@ -1416,30 +1443,85 @@
   </main>
 
   <!-- ===================================================================
-       6. MODALS: GEMINI API KEY, REPORT EXPORTER & AI QUIZ
+       6. GLOBAL FLOATING GEMINI CHATBOT DRAWER & MODALS (REPORT & QUIZ)
        =================================================================== -->
-  <!-- API Key Modal -->
-  <div id="apiKeyModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+  <!-- Global Floating Gemini Chatbot Launcher (Visible on Landing / Library or when Sidebar Closed) -->
+  <button
+    id="globalChatFloatingBtn"
+    onclick="toggleGlobalChatDrawer()"
+    class="fixed bottom-5 right-5 z-40 px-4 py-2.5 rounded-full bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-xl border border-sky-400/40 flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+    title="Mở Trợ lý Gemini AI"
+  >
+    <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+    <span data-i18n="floating_ai_btn">Chat Gia Sư Gemini</span>
+  </button>
+
+  <!-- Global Floating Multi-Turn Gemini Chat Drawer -->
+  <div
+    id="globalChatDrawer"
+    class="hidden fixed bottom-16 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 h-[500px] max-h-[80vh] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl flex-col overflow-hidden"
+  >
+    <div class="p-3.5 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 space-y-2 shrink-0">
       <div class="flex items-center justify-between">
-        <h3 class="text-base font-extrabold text-white flex items-center gap-2">
-          <span>🔑 Cài đặt Gemini API Key</span>
-        </h3>
-        <button onclick="closeModal('apiKeyModal')" class="text-slate-400 hover:text-white cursor-pointer">✕</button>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <div>
+            <div class="text-xs font-extrabold text-slate-900 dark:text-white" data-i18n="ai_title">Gia Sư Gemini AI</div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-400">Proxy `/api/chat` · Hóa · Lý · Sinh THPT</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="clearAIChatHistory()" class="px-2 py-1 rounded-lg bg-slate-200/70 hover:bg-slate-300 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-semibold cursor-pointer">
+            Làm mới
+          </button>
+          <button onclick="toggleGlobalChatDrawer(false)" class="w-7 h-7 rounded-lg bg-slate-200/70 hover:bg-slate-300 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center text-xs cursor-pointer">
+            ✕
+          </button>
+        </div>
       </div>
-      <p class="text-xs text-slate-300 leading-relaxed">
-        Nhập Google Gemini API Key của bạn để sử dụng tính năng Gia sư AI thời gian thực mà không bị giới hạn. Key được lưu an toàn trong trình duyệt (localStorage).
-      </p>
+
+      <!-- Model Tier Selector inside Drawer -->
+      <div class="flex items-center justify-between gap-1 bg-slate-200/60 dark:bg-slate-900 p-1 rounded-xl border border-slate-300/60 dark:border-slate-800 text-[10px]">
+        <button onclick="setGeminiModelTier('gemini-3.1-flash-lite')" data-gemini-model="gemini-3.1-flash-lite" class="gemini-model-btn flex-1 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 cursor-pointer transition-all">
+          Lite 3.1 (Nhanh)
+        </button>
+        <button onclick="setGeminiModelTier('gemini-3.8-flash')" data-gemini-model="gemini-3.8-flash" class="gemini-model-btn flex-1 py-1 rounded-lg font-bold bg-sky-600 text-white cursor-pointer transition-all">
+          Flash 3.8 (Chuẩn)
+        </button>
+        <button onclick="setGeminiModelTier('gemini-4-argon')" data-gemini-model="gemini-4-argon" class="gemini-model-btn flex-1 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 cursor-pointer transition-all">
+          Argon 4.0 (Sâu)
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Prompt Chips inside Drawer -->
+    <div class="px-3 py-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center gap-1.5 overflow-x-auto shrink-0">
+      <button onclick="askQuickPrompt('EXPLAIN')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-sky-700 dark:text-sky-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 whitespace-nowrap cursor-pointer">
+        Giải thích bài đang mở
+      </button>
+      <button onclick="askQuickPrompt('PREDICT')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-amber-700 dark:text-amber-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 whitespace-nowrap cursor-pointer">
+        Dự đoán hiện tượng
+      </button>
+      <button onclick="askQuickPrompt('QUIZ_1')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 whitespace-nowrap cursor-pointer">
+        Câu hỏi trắc nghiệm
+      </button>
+    </div>
+
+    <!-- Drawer Scrollable Messages (Synced with #aiChatMessages) -->
+    <div id="globalChatMessages" class="flex-1 overflow-y-auto space-y-2.5 p-3 bg-slate-50 dark:bg-slate-950 text-xs"></div>
+
+    <!-- Drawer Input -->
+    <div class="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2 shrink-0">
       <input
-        id="userGeminiKeyInput"
-        type="password"
-        placeholder="AIzaSy..."
-        class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 font-mono"
+        id="globalChatInput"
+        type="text"
+        placeholder="Nhập câu hỏi Hóa - Lý - Sinh cho Gemini..."
+        class="flex-1 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-sky-500"
+        onkeydown="if(event.key==='Enter') sendUserChatMessage('globalChatInput')"
       />
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeModal('apiKeyModal')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 cursor-pointer">Đóng</button>
-        <button onclick="saveUserGeminiKey()" class="px-4 py-2 rounded-xl bg-sky-600 text-white text-xs font-bold hover:bg-sky-500 cursor-pointer">Lưu Khóa</button>
-      </div>
+      <button onclick="sendUserChatMessage('globalChatInput')" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-colors cursor-pointer shrink-0">
+        Gửi
+      </button>
     </div>
   </div>
 
@@ -1980,14 +2062,19 @@
         drop_here_sub: 'Kích hoạt phản ứng & cập nhật thông số',
         hint_3d_rotate: 'Kéo chuột xoay 360° · Cuộn để phóng to · Bật AR để chiếu lên bàn thật',
         lbl_formula_banner: 'CÔNG THỨC / PHƯƠNG TRÌNH:',
-        ai_title: 'Gia Sư AI LabSim',
-        ai_sub: 'Giải thích hiện tượng & Công thức',
-        ai_chip_explain: 'Bản chất',
-        ai_chip_predict: 'Dự đoán',
-        ai_chip_quiz: 'Câu đố',
+        btn_gemini_chat: 'Gemini AI',
+        floating_ai_btn: 'Chat Gia Sư Gemini',
+        ai_title: 'Gia Sư Gemini AI',
+        ai_sub: 'API Gián Tiếp · Bảo mật Server',
+        ai_clear_btn: 'Mới',
+        ai_chip_explain: 'Giải thích bản chất',
+        ai_chip_predict: 'Dự đoán hiện tượng',
+        ai_chip_formula: 'Phân tích công thức',
+        ai_chip_quiz: 'Đố vui nhanh',
+        ai_send_btn: 'Gửi',
         open_lab_btn: 'Mở Bàn Lab →',
         search_placeholder: 'Tìm thí nghiệm (VD: chuẩn độ, khe Young, ADN, mạch RLC...)',
-        ai_input_placeholder: 'Hỏi Gia sư AI về thí nghiệm...'
+        ai_input_placeholder: 'Hỏi Gia sư Gemini về thí nghiệm...'
       },
       en: {
         nav_home: 'Home',
@@ -2070,14 +2157,19 @@
         drop_here_sub: 'Trigger reaction & update parameters',
         hint_3d_rotate: 'Drag to rotate 360° · Scroll to Zoom · Toggle AR to project in real space',
         lbl_formula_banner: 'EQUATION / FORMULA:',
-        ai_title: 'LabSim AI Tutor',
-        ai_sub: 'Explains phenomena & equations',
-        ai_chip_explain: 'Principle',
-        ai_chip_predict: 'Predict',
-        ai_chip_quiz: 'Quiz Me',
+        btn_gemini_chat: 'Gemini AI',
+        floating_ai_btn: 'Chat Gemini Tutor',
+        ai_title: 'Gemini AI Tutor',
+        ai_sub: 'Indirect Server Proxy · Protected API',
+        ai_clear_btn: 'New',
+        ai_chip_explain: 'Explain Principle',
+        ai_chip_predict: 'Predict Outcome',
+        ai_chip_formula: 'Analyze Formula',
+        ai_chip_quiz: 'Quick Quiz',
+        ai_send_btn: 'Send',
         open_lab_btn: 'Open Lab →',
         search_placeholder: 'Search experiments (e.g. titration, Young slit, DNA, RLC...)...',
-        ai_input_placeholder: 'Ask AI Tutor about this experiment...'
+        ai_input_placeholder: 'Ask Gemini Tutor about this experiment...'
       }
     };
 
@@ -8268,59 +8360,299 @@
     }
 
     /*********************************************************************
-     * N. AI CO-PILOT, QUIZ & EXPORT UTILITIES
+     * N. INDIRECT SERVER-SIDE GEMINI CHATBOT, QUIZ & EXPORT UTILITIES
      *********************************************************************/
-    function postAIGreetingForExperiment(exp) {
-      const box = document.getElementById('aiChatMessages');
-      if (!box || !exp) return;
-      box.innerHTML = `
-        <div class="p-3 rounded-xl bg-sky-950/60 border border-sky-800 text-slate-200 leading-relaxed text-xs">
-          <span class="font-bold text-sky-400 block mb-1">Gia sư AI (${exp.id}):</span>
-          ${exp.aiGreeting}
+    window.aiChatHistory = [];
+    window.selectedGeminiModel = 'gemini-3.8-flash';
+    window.isAIChatGenerating = false;
+
+    function setGeminiModelTier(modelName) {
+      window.selectedGeminiModel = modelName || 'gemini-3.8-flash';
+      document.querySelectorAll('.gemini-model-btn').forEach(btn => {
+        const m = btn.getAttribute('data-gemini-model');
+        if (m === window.selectedGeminiModel) {
+          btn.className = 'gemini-model-btn flex-1 py-1 rounded-lg font-bold bg-sky-600 text-white cursor-pointer transition-all';
+        } else {
+          btn.className = 'gemini-model-btn flex-1 py-1 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer transition-all';
+        }
+      });
+    }
+
+    function toggleGlobalChatDrawer(forceState) {
+      const drawer = document.getElementById('globalChatDrawer');
+      if (!drawer) return;
+      const isHidden = drawer.classList.contains('hidden');
+      const nextOpen = typeof forceState === 'boolean' ? forceState : isHidden;
+      if (nextOpen) {
+        drawer.classList.remove('hidden');
+        drawer.classList.add('flex');
+        renderAIChatHistory();
+        setTimeout(() => {
+          const inp = document.getElementById('globalChatInput');
+          if (inp) inp.focus();
+        }, 60);
+      } else {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+      }
+    }
+
+    function openGlobalChatbot() {
+      const s = window.currentLabState;
+      if (s.currentView === 'workspace') {
+        if (window.innerWidth < 1024) {
+          setMobileWorkspacePane('ai');
+        } else if (s.aiSidebarCollapsed) {
+          s.aiSidebarCollapsed = false;
+          adaptResponsiveLayout();
+        }
+        const inp = document.getElementById('aiChatInput');
+        if (inp) inp.focus();
+      } else {
+        toggleGlobalChatDrawer(true);
+      }
+    }
+
+    function formatAIMarkdownToHTML(rawText) {
+      if (!rawText) return '';
+      const escaped = String(rawText)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      return escaped
+        .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-slate-200/80 dark:bg-slate-800 text-sky-700 dark:text-amber-300 font-mono text-[11px]">$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-bold text-slate-900 dark:text-white">$1</strong>')
+        .replace(/^\s*[-*•]\s+(.+)$/gm, '<div class="pl-2.5 border-l-2 border-sky-500/40 my-1">• $1</div>')
+        .replace(/\n/g, '<br/>');
+    }
+
+    function buildLiveLabContextSummary() {
+      const s = window.currentLabState;
+      const exp = window.currentExperiment || CURRICULUM_36[0];
+      const parts = [
+        `- Bài thí nghiệm đang mở: [${exp.id}] ${exp.title} (Khối lớp ${exp.grade})`,
+        `- Phương trình / Công thức trọng tâm: ${exp.formula}`,
+        `- Mục tiêu bài học: ${exp.goal}`,
+        `- Phân môn đang chọn: ${s.activeTab} | Engine 2D: ${s.engine2D} | Chế độ hiển thị: ${s.viewMode}`
+      ];
+      if (s.activeTab === 'CHEM') {
+        const reagents = (s.chem.activeReagents || []).join(', ') || 'Chưa nạp hóa chất';
+        parts.push(`- Trạng thái Hóa học: Hóa chất trong bình = [${reagents}], pH = ${Number(s.chem.pH || 7).toFixed(2)}, Nhiệt độ = ${Number(s.chem.temperatureC || 25).toFixed(1)}°C, Đèn cồn = ${s.chem.bunsenActive ? 'ĐANG ĐUN' : 'TẮT'}`);
+        if (s.chem.precipitateText) parts.push(`- Kết tủa / Hiện tượng: ${s.chem.precipitateText}`);
+      } else if (s.activeTab === 'PHYS') {
+        parts.push(`- Trạng thái Vật lý: Góc bắn = ${s.phys.launchAngleDeg}°, Vận tốc đầu v0 = ${s.phys.initialVelocity} m/s, Trọng trường g = ${s.phys.gravityG} m/s², Bước sóng Laser = ${s.phys.laserWavelengthNm} nm, Tần số RLC = ${s.phys.frequencyHz} Hz`);
+      } else if (s.activeTab === 'BIO') {
+        parts.push(`- Trạng thái Sinh học: Độ phóng đại kính hiển vi = ${s.bio.microscopeZoom}x, Nhịp tim = ${s.bio.heartRateBpm} BPM, Nồng độ NaCl = ${s.bio.salinityPercent}%, Lactose Operon = ${s.bio.lactosePresent ? 'CÓ (Bật phiên mã)' : 'KHÔNG (Khóa vùng O)'}`);
+      }
+      return parts.join('\n');
+    }
+
+    function generateContextualSocraticFallback(userMsg) {
+      const s = window.currentLabState;
+      const exp = window.currentExperiment || CURRICULUM_36[0];
+      const isEn = s.lang === 'en';
+      const loc = getExpLocalized(exp);
+      const qLower = (userMsg || '').toLowerCase();
+
+      // Match specific chemical reactions from REACTION_DIRECTORY if asked
+      for (const rx of REACTION_DIRECTORY) {
+        const tokens = rx.key.toLowerCase().split('+');
+        if (tokens.every(t => qLower.includes(t.replace('_conc', '').replace('_metal', '').replace('_sat', '')))) {
+          return isEn
+            ? `**Reaction Mechanism (${rx.reactants}):**\n• **Equation:** \`${rx.eq}\`\n• **Observation:** ${rx.phenom}\n• **Socratic Question:** What happens to the reaction rate if you turn on the Bunsen burner or enable the Ion Loupe on the 2D workbench?`
+            : `**Phân tích Phản ứng (${rx.reactants}):**\n• **Phương trình:** \`${rx.eq}\`\n• **Hiện tượng thực nghiệm:** ${rx.phenom}\n• **Phân loại:** ${rx.type}\n• **Câu hỏi mở Socratic:** Theo bạn, nếu bật đèn cồn đun nóng hoặc bật chế độ *Soi Vi mô / Ion* thì tốc độ chuyển động của các hạt sẽ thay đổi như thế nào?`;
+        }
+      }
+
+      if (isEn) {
+        return [
+          `**Socratic Lab Analysis — ${loc.title}:**`,
+          `• **Core Equation / Law:** \`${exp.formula}\``,
+          `• **Scientific Principle:** ${loc.goal}`,
+          `• **Current Workbench State:** ${s.activeTab} Engine (\`${s.engine2D}\`) at ${s.activeTab === 'CHEM' ? `pH ${Number(s.chem.pH || 7).toFixed(2)}, ${Number(s.chem.temperatureC || 25).toFixed(1)}°C` : (s.activeTab === 'PHYS' ? `g = ${s.phys.gravityG} m/s², v₀ = ${s.phys.initialVelocity} m/s` : `${s.bio.heartRateBpm} BPM, ${s.bio.microscopeZoom}x zoom`)}.`,
+          `• **Next Step Question:** If you double the primary control parameter on the left panel, how do you predict the real-time graph and 3D/AR model will respond?`
+        ].join('\n');
+      }
+
+      return [
+        `**Phân tích Gia sư AI — ${exp.title}:**`,
+        `• **Phương trình / Định luật trọng tâm:** \`${exp.formula}\``,
+        `• **Bản chất khoa học:** ${exp.goal}`,
+        `• **Thông số bàn Lab hiện tại:** ${s.activeTab === 'CHEM' ? `pH = ${Number(s.chem.pH || 7).toFixed(2)} · Nhiệt độ = ${Number(s.chem.temperatureC || 25).toFixed(1)}°C · Hóa chất: ${(s.chem.activeReagents || []).join(' + ') || 'Trống'}` : (s.activeTab === 'PHYS' ? `g = ${s.phys.gravityG} m/s² · v₀ = ${s.phys.initialVelocity} m/s · λ = ${s.phys.laserWavelengthNm} nm` : `Nhịp tim = ${s.bio.heartRateBpm} BPM · Kính hiển vi = ${s.bio.microscopeZoom}x`)}.`,
+        `• **Câu hỏi gợi mở (Socratic):** Nếu bạn thay đổi đại lượng điều khiển ở cột trái hoặc chuyển sang chế độ **Mô Hình 3D / Thực Tế Ảo AR**, đại lượng nào trong công thức \`${exp.formula}\` sẽ biến thiên trực tiếp?`
+      ].join('\n');
+    }
+
+    function renderAIChatHistory() {
+      const containers = [
+        document.getElementById('aiChatMessages'),
+        document.getElementById('globalChatMessages')
+      ].filter(Boolean);
+
+      if (containers.length === 0) return;
+
+      const htmlContent = window.aiChatHistory.map(turn => {
+        if (turn.role === 'user') {
+          return `
+            <div class="flex justify-end">
+              <div class="max-w-[88%] p-2.5 rounded-2xl rounded-tr-xs bg-sky-600 text-white text-xs leading-relaxed shadow-xs">
+                ${formatAIMarkdownToHTML(turn.text)}
+              </div>
+            </div>
+          `;
+        } else {
+          const badge = turn.modelBadge || 'Gemini AI';
+          return `
+            <div class="flex justify-start">
+              <div class="max-w-[94%] p-3 rounded-2xl rounded-tl-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs leading-relaxed shadow-xs space-y-1">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <span class="font-extrabold text-sky-600 dark:text-sky-400 text-[11px]">Gia sư Gemini</span>
+                  <span class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-mono text-[9px]">${badge}</span>
+                </div>
+                <div>${formatAIMarkdownToHTML(turn.text)}</div>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      const loadingHTML = window.isAIChatGenerating ? `
+        <div class="flex justify-start">
+          <div class="p-2.5 px-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-[11px] flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+            <span>Gemini đang phân tích dữ liệu bàn thí nghiệm...</span>
+          </div>
         </div>
-      `;
+      ` : '';
+
+      containers.forEach(box => {
+        box.innerHTML = htmlContent + loadingHTML;
+        box.scrollTop = box.scrollHeight;
+      });
+    }
+
+    function initAIChatbotGreeting() {
+      const exp = window.currentExperiment || CURRICULUM_36[0];
+      if (!window.aiChatHistory || window.aiChatHistory.length === 0) {
+        window.aiChatHistory = [
+          {
+            role: 'model',
+            text: `${exp.aiGreeting}\n\nBạn có thể hỏi bất kỳ câu hỏi nào về **Hóa học, Vật lý, Sinh học**, công thức \`${exp.formula}\` hoặc cách kết hợp hóa chất trong **DIY Sandbox**!`,
+            modelBadge: 'Gemini · Socratic'
+          }
+        ];
+      }
+      renderAIChatHistory();
+    }
+
+    function postAIGreetingForExperiment(exp) {
+      if (!exp) return;
+      const isEn = window.currentLabState && window.currentLabState.lang === 'en';
+      const loc = getExpLocalized(exp);
+      const greetingText = isEn
+        ? `Welcome to **${loc.title}**!\n• **Core Formula:** \`${exp.formula}\`\n• **Goal:** ${loc.goal}\nAsk me anything about this experiment or click a quick chip above.`
+        : `${exp.aiGreeting}\n• **Công thức trọng tâm:** \`${exp.formula}\``;
+
+      window.aiChatHistory = [
+        {
+          role: 'model',
+          text: greetingText,
+          modelBadge: `${exp.id}`
+        }
+      ];
+      renderAIChatHistory();
+    }
+
+    function clearAIChatHistory() {
+      const exp = window.currentExperiment || CURRICULUM_36[0];
+      window.aiChatHistory = [];
+      postAIGreetingForExperiment(exp);
     }
 
     function askQuickPrompt(type) {
       const exp = window.currentExperiment || CURRICULUM_36[0];
-      const map = {
-        EXPLAIN: `Giải thích bản chất hiện tượng và công thức ${exp.formula} của bài ${exp.title}?`,
-        PREDICT: `Dự đoán hiện tượng xảy ra khi tăng gấp đôi đại lượng điều khiển trong bài ${exp.title}?`,
-        QUIZ_1: `Cho em một câu hỏi trắc nghiệm vận dụng nhanh về bài ${exp.title}.`
+      const isEn = window.currentLabState && window.currentLabState.lang === 'en';
+      const loc = getExpLocalized(exp);
+      const map = isEn ? {
+        EXPLAIN: `Explain the scientific mechanism and phenomenon of "${loc.title}" (${exp.formula}).`,
+        PREDICT: `What happens if we double the main control variable or heat the system in "${loc.title}"?`,
+        FORMULA: `Break down each variable and unit in the formula ${exp.formula} for "${loc.title}".`,
+        QUIZ_1: `Give me 1 multiple-choice practice question about "${loc.title}" and explain the answer.`
+      } : {
+        EXPLAIN: `Giải thích bản chất hiện tượng và cơ chế khoa học của bài "${exp.title}" (${exp.formula})?`,
+        PREDICT: `Dự đoán hiện tượng xảy ra khi thay đổi đại lượng điều khiển hoặc đun nóng trong bài "${exp.title}"?`,
+        FORMULA: `Giải thích ý nghĩa từng đại lượng và đơn vị trong công thức ${exp.formula} của bài "${exp.title}".`,
+        QUIZ_1: `Cho em một câu hỏi trắc nghiệm vận dụng nhanh về bài "${exp.title}" kèm giải thích đáp án.`
       };
-      const input = document.getElementById('aiChatInput');
-      if (input) {
-        input.value = map[type] || map.EXPLAIN;
-        sendUserChatMessage();
-      }
+      const promptText = map[type] || map.EXPLAIN;
+      sendUserChatMessage(null, promptText);
     }
 
-    function sendUserChatMessage() {
-      const input = document.getElementById('aiChatInput');
-      const box = document.getElementById('aiChatMessages');
-      if (!input || !box || !input.value.trim()) return;
+    async function sendUserChatMessage(inputId, directMessage) {
+      if (window.isAIChatGenerating) return;
 
-      const msg = input.value.trim();
-      input.value = '';
+      let msg = directMessage ? String(directMessage).trim() : '';
+      if (!msg) {
+        const targetId = inputId || 'aiChatInput';
+        const inputEl = document.getElementById(targetId) || document.getElementById('aiChatInput') || document.getElementById('globalChatInput');
+        if (!inputEl || !inputEl.value.trim()) return;
+        msg = inputEl.value.trim();
+        inputEl.value = '';
+      }
 
-      const uDiv = document.createElement('div');
-      uDiv.className = 'p-2.5 rounded-xl bg-sky-600/30 border border-sky-500/40 text-white text-xs ml-4';
-      uDiv.textContent = msg;
-      box.appendChild(uDiv);
+      const priorHistory = window.aiChatHistory.slice(-14).map(h => ({
+        role: h.role === 'model' ? 'model' : 'user',
+        text: h.text
+      }));
 
-      const exp = window.currentExperiment || CURRICULUM_36[0];
-      setTimeout(() => {
-        const reply = document.createElement('div');
-        reply.className = 'p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs leading-relaxed';
-        reply.innerHTML = `
-          <span class="font-bold text-sky-400 block mb-1">Phân tích Socratic:</span>
-          • <strong>Phương trình / Định luật:</strong> <code class="text-amber-300 font-mono">${exp.formula}</code><br/>
-          • <strong>Bản chất:</strong> ${exp.goal}<br/>
-          • <strong>Gợi ý:</strong> Bạn hãy thử kéo các thanh trượt bên cột trái, mở tab <strong>Tủ đồ DIY</strong> hoặc bật chế độ <strong>Thực Tế Ảo AR</strong> để quan sát mô hình 3D trực tiếp ngoài đời thực!
-        `;
-        box.appendChild(reply);
-        box.scrollTop = box.scrollHeight;
-      }, 350);
+      window.aiChatHistory.push({
+        role: 'user',
+        text: msg
+      });
+      window.isAIChatGenerating = true;
+      renderAIChatHistory();
+
+      try {
+        // Indirect server-side API call (/api/chat) — no API key ever exposed on client or GitHub
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: msg,
+            history: priorHistory,
+            model: window.selectedGeminiModel || 'gemini-3.8-flash',
+            labContext: buildLiveLabContextSummary()
+          })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (response.ok && data && data.text) {
+          window.aiChatHistory.push({
+            role: 'model',
+            text: data.text,
+            modelBadge: data.model || window.selectedGeminiModel
+          });
+        } else {
+          // Seamless Socratic STEM fallback if GEMINI_API_KEY env var is not yet set on server
+          const fallbackReply = generateContextualSocraticFallback(msg);
+          window.aiChatHistory.push({
+            role: 'model',
+            text: fallbackReply,
+            modelBadge: 'Socratic Engine'
+          });
+        }
+      } catch (err) {
+        const fallbackReply = generateContextualSocraticFallback(msg);
+        window.aiChatHistory.push({
+          role: 'model',
+          text: fallbackReply,
+          modelBadge: 'Socratic Engine'
+        });
+      } finally {
+        window.isAIChatGenerating = false;
+        renderAIChatHistory();
+      }
     }
 
     function openModal(id) {
@@ -8336,12 +8668,6 @@
     function closeModal(id) {
       const el = document.getElementById(id);
       if (el) { el.classList.add('hidden'); el.classList.remove('flex'); }
-    }
-
-    function saveUserGeminiKey() {
-      const val = document.getElementById('userGeminiKeyInput')?.value?.trim();
-      if (val) localStorage.setItem('LABSIM_GEMINI_API_KEY', val);
-      closeModal('apiKeyModal');
     }
 
     function generateLabReportContent() {
@@ -8372,31 +8698,97 @@
       regenerateAIQuiz();
     }
 
-    function regenerateAIQuiz() {
+    async function regenerateAIQuiz() {
       const body = document.getElementById('quizContainerBody');
+      const banner = document.getElementById('quizScoreBanner');
       const exp = window.currentExperiment || CURRICULUM_36[0];
       if (!body) return;
-      body.innerHTML = `
-        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
-          <div class="font-bold text-white text-xs">Câu 1: Bản chất hoặc phương trình biểu diễn của bài "${exp.title}" là gì?</div>
-          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-            <input type="radio" name="q1" value="1" checked class="accent-sky-500">
-            <span>A. ${exp.formula}</span>
-          </label>
-          <label class="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
-            <input type="radio" name="q1" value="0" class="accent-sky-500">
-            <span>B. Hệ bảo toàn không biến đổi qua các trạng thái</span>
-          </label>
+      if (banner) banner.classList.add('hidden');
+
+      const defaultQuestions = [
+        {
+          q: `Câu 1: Phương trình hoặc biểu thức định luật trọng tâm của bài "${exp.title}" là gì?`,
+          options: [
+            exp.formula,
+            'Hệ cô lập không xảy ra biến đổi năng lượng hoặc trao đổi hạt',
+            'Tốc độ biến thiên luôn bằng hằng số 0 ở mọi điều kiện nhiệt độ',
+            'Áp suất và thể tích luôn tỉ lệ thuận ở nhiệt độ không đổi'
+          ],
+          correct: 0
+        },
+        {
+          q: `Câu 2: Mục tiêu khảo sát thực nghiệm chính của bài "${exp.title}" (Lớp ${exp.grade}) là gì?`,
+          options: [
+            exp.goal,
+            'Đo khối lượng riêng của kim loại nặng trong chân không tuyệt đối',
+            'Khảo sát sự phân rã phóng xạ hạt nhân nguyên tử siêu nặng',
+            'Chứng minh chất khí trơ phản ứng mãnh liệt với nước cất ở 0°C'
+          ],
+          correct: 0
+        }
+      ];
+
+      window.currentQuizData = defaultQuestions;
+      renderQuizQuestionsUI(defaultQuestions);
+
+      // Try enriching quiz via indirect server-side /api/gemini endpoint
+      try {
+        const res = await fetch('/api/gemini', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'gemini-3.1-flash-lite',
+            responseMimeType: 'application/json',
+            prompt: `Tạo 2 câu hỏi trắc nghiệm khách quan (4 đáp án A,B,C,D) bằng Tiếng Việt bám sát bài thí nghiệm THPT: "${exp.title}", công thức "${exp.formula}", mục tiêu "${exp.goal}". Trả về JSON array dạng: [{"q":"Câu 1: ...","options":["...","...","...","..."],"correct":0}]`
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const parsed = JSON.parse(data.text || '[]');
+          if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].q && Array.isArray(parsed[0].options)) {
+            window.currentQuizData = parsed;
+            renderQuizQuestionsUI(parsed);
+          }
+        }
+      } catch (_e) {
+        // Keep defaultQuestions rendered
+      }
+    }
+
+    function renderQuizQuestionsUI(questions) {
+      const body = document.getElementById('quizContainerBody');
+      if (!body) return;
+      body.innerHTML = questions.map((item, qIdx) => `
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+          <div class="font-bold text-white text-xs">${item.q}</div>
+          <div class="space-y-1.5">
+            ${(item.options || []).map((opt, oIdx) => `
+              <label class="flex items-start gap-2 text-xs text-slate-300 hover:text-white cursor-pointer p-1.5 rounded-lg hover:bg-slate-900">
+                <input type="radio" name="quiz_q_${qIdx}" value="${oIdx}" ${oIdx === 0 ? 'checked' : ''} class="accent-sky-500 mt-0.5">
+                <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+              </label>
+            `).join('')}
+          </div>
         </div>
-      `;
+      `).join('');
     }
 
     function submitQuizAnswers() {
       const banner = document.getElementById('quizScoreBanner');
-      if (banner) {
-        banner.classList.remove('hidden');
-        banner.textContent = 'Kết quả: 10/10 — Xuất sắc! Bạn đã nắm vững kiến thức trọng tâm.';
-      }
+      const questions = window.currentQuizData || [];
+      if (!banner || questions.length === 0) return;
+
+      let correctCount = 0;
+      questions.forEach((item, qIdx) => {
+        const selected = document.querySelector(`input[name="quiz_q_${qIdx}"]:checked`);
+        if (selected && Number(selected.value) === Number(item.correct || 0)) {
+          correctCount++;
+        }
+      });
+
+      const score10 = Math.round((correctCount / questions.length) * 10);
+      banner.classList.remove('hidden');
+      banner.textContent = `Kết quả: ${correctCount}/${questions.length} câu đúng (${score10}/10 điểm) — ${score10 >= 8 ? 'Xuất sắc! Bạn đã nắm vững bản chất thí nghiệm.' : 'Hãy xem lại công thức trọng tâm và hỏi Gia sư Gemini nhé!'}`;
     }
 
     function downloadStandaloneHTML() {
@@ -8599,6 +8991,7 @@
       initThreeJSViewport();
       renderGlossaryTerms();
       renderReactionDirectory();
+      initAIChatbotGreeting();
       adaptResponsiveLayout();
       window.addEventListener('resize', () => {
         if (window.innerWidth > 900 && document.body.classList.contains('menu-open')) {
