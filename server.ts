@@ -10,11 +10,7 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ALLOWED_MODELS = new Set([
-  'gemini-3.8-flash',
-  'gemini-3.1-flash-lite',
-  'gemini-4-argon',
-]);
+const LITE_MODEL = 'gemini-3.1-flash-lite';
 
 function getGeminiClient(): GoogleGenAI | null {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -40,16 +36,15 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(express.json({ limit: '2mb' }));
+  app.use(express.json({ limit: '1mb' }));
 
-  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat)
+  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat) — Locked to gemini-3.1-flash-lite for quota efficiency
   app.post('/api/chat', async (req, res) => {
     try {
       const {
         message,
         history = [],
         systemInstruction,
-        model = 'gemini-3.8-flash',
         labContext = '',
       } = req.body || {};
 
@@ -67,21 +62,16 @@ async function startServer() {
         return;
       }
 
-      const requestedModel = ALLOWED_MODELS.has(model) ? model : 'gemini-3.8-flash';
-
       const defaultSystemPrompt = [
-        'Bạn là Gia sư AI Socratic chuyên sâu của nền tảng phòng thí nghiệm ảo LabSim (Vật Lý - Hóa Học - Sinh Học THPT chuẩn chương trình GDPT 2018 Việt Nam).',
-        'Nhiệm vụ của bạn:',
-        '1. Giải thích cặn kẽ bản chất hiện tượng khoa học, cơ chế phản ứng hóa học, định luật vật lý và quá trình sinh học đang diễn ra trên bàn thí nghiệm.',
-        '2. Luôn trích dẫn phương trình hóa học, phương trình ion thu gọn hoặc công thức vật lý/sinh học chính xác.',
-        '3. Đặt 1 câu hỏi gợi mở ngắn gọn ở cuối câu trả lời theo phương pháp Socratic để khuyến khích học sinh tự thực nghiệm trên bàn Lab 2D, mô hình 3D hoặc chế độ AR.',
-        '4. Trả lời bằng ngôn ngữ tương ứng với ngôn ngữ người dùng đang sử dụng (Tiếng Việt hoặc Tiếng Anh), trình bày rõ ràng với các gạch đầu dòng ngắn gọn, dễ đọc.',
-        systemInstruction ? `\nHướng dẫn bổ sung: ${systemInstruction}` : '',
-        labContext ? `\nTrạng thái bàn thí nghiệm hiện tại:\n${labContext}` : '',
+        'Bạn là Gia sư AI của phòng thí nghiệm ảo LabSim (Lý - Hóa - Sinh THPT GDPT 2018).',
+        'Trả lời ngắn gọn, súc tích (tối đa 4 gạch đầu dòng), nêu đúng phương trình/công thức trọng tâm và 1 câu hỏi gợi mở.',
+        systemInstruction ? `Lưu ý: ${systemInstruction}` : '',
+        labContext ? `Bàn Lab:\n${labContext}` : '',
       ]
         .filter(Boolean)
         .join('\n');
 
+      // Keep only the last 6 turns and trim length to save input quota
       const sanitizedHistory: Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }> =
         Array.isArray(history)
           ? (history as ChatTurn[])
@@ -92,10 +82,10 @@ async function startServer() {
                   typeof h.text === 'string' &&
                   h.text.trim().length > 0
               )
-              .slice(-16)
+              .slice(-6)
               .map((h) => ({
                 role: h.role,
-                parts: [{ text: h.text }],
+                parts: [{ text: h.text.slice(0, 500) }],
               }))
           : [];
 
@@ -103,44 +93,23 @@ async function startServer() {
         ...sanitizedHistory,
         {
           role: 'user' as const,
-          parts: [{ text: message }],
+          parts: [{ text: message.slice(0, 600) }],
         },
       ];
 
-      let usedModel = requestedModel;
-      let responseText = '';
-
-      try {
-        const response = await ai.models.generateContent({
-          model: requestedModel,
-          contents,
-          config: {
-            systemInstruction: defaultSystemPrompt,
-            temperature: 0.65,
-          },
-        });
-        responseText = response.text || '';
-      } catch (primaryErr) {
-        // Fallback to gemini-3.8-flash if gemini-4-argon or another tier is unavailable on current key
-        if (requestedModel !== 'gemini-3.8-flash') {
-          usedModel = 'gemini-3.8-flash';
-          const fallbackResponse = await ai.models.generateContent({
-            model: usedModel,
-            contents,
-            config: {
-              systemInstruction: defaultSystemPrompt,
-              temperature: 0.65,
-            },
-          });
-          responseText = fallbackResponse.text || '';
-        } else {
-          throw primaryErr;
-        }
-      }
+      const response = await ai.models.generateContent({
+        model: LITE_MODEL,
+        contents,
+        config: {
+          systemInstruction: defaultSystemPrompt,
+          temperature: 0.6,
+          maxOutputTokens: 360,
+        },
+      });
 
       res.json({
-        text: responseText,
-        model: usedModel,
+        text: response.text || '',
+        model: LITE_MODEL,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown Gemini Chat API error';
@@ -148,7 +117,7 @@ async function startServer() {
     }
   });
 
-  // 2. General Server-side Gemini API Proxy Endpoint (/api/gemini)
+  // 2. General Server-side Gemini API Proxy Endpoint (/api/gemini) — Locked to gemini-3.1-flash-lite
   app.post('/api/gemini', async (req, res) => {
     try {
       const {
@@ -156,7 +125,6 @@ async function startServer() {
         history,
         systemInstruction,
         responseMimeType,
-        model = 'gemini-3.8-flash',
       } = req.body || {};
 
       if (!prompt && (!Array.isArray(history) || history.length === 0)) {
@@ -173,8 +141,9 @@ async function startServer() {
         return;
       }
 
-      const selectedModel = ALLOWED_MODELS.has(model) ? model : 'gemini-3.8-flash';
-      const config: Record<string, unknown> = {};
+      const config: Record<string, unknown> = {
+        maxOutputTokens: 360,
+      };
       if (systemInstruction) {
         config.systemInstruction = systemInstruction;
       }
@@ -185,38 +154,23 @@ async function startServer() {
       const contents =
         Array.isArray(history) && history.length > 0
           ? [
-              ...history.map((h: ChatTurn) => ({
+              ...history.slice(-6).map((h: ChatTurn) => ({
                 role: h.role === 'model' ? 'model' : 'user',
-                parts: [{ text: String(h.text || '') }],
+                parts: [{ text: String(h.text || '').slice(0, 500) }],
               })),
-              ...(prompt ? [{ role: 'user', parts: [{ text: String(prompt) }] }] : []),
+              ...(prompt ? [{ role: 'user', parts: [{ text: String(prompt).slice(0, 600) }] }] : []),
             ]
-          : String(prompt);
+          : String(prompt).slice(0, 800);
 
-      let response;
-      let actualModel = selectedModel;
-      try {
-        response = await ai.models.generateContent({
-          model: selectedModel,
-          contents,
-          config,
-        });
-      } catch (err) {
-        if (selectedModel !== 'gemini-3.8-flash') {
-          actualModel = 'gemini-3.8-flash';
-          response = await ai.models.generateContent({
-            model: actualModel,
-            contents,
-            config,
-          });
-        } else {
-          throw err;
-        }
-      }
+      const response = await ai.models.generateContent({
+        model: LITE_MODEL,
+        contents,
+        config,
+      });
 
       res.json({
         text: response.text || '',
-        model: actualModel,
+        model: LITE_MODEL,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown Gemini API error';
