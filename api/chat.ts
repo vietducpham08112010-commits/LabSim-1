@@ -71,7 +71,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       'Bạn là Gia sư AI Socratic chuyên sâu của nền tảng phòng thí nghiệm ảo LabSim (Vật Lý - Hóa Học - Sinh Học THPT chuẩn chương trình GDPT 2018 Việt Nam).',
       'Nhiệm vụ của bạn:',
       '1. Giải thích cặn kẽ bản chất hiện tượng khoa học, cơ chế phản ứng hóa học, định luật vật lý và quá trình sinh học đang diễn ra trên bàn thí nghiệm.',
-      '2. Luôn trích dẫn phương trình hóa học, phương trình ion thu gọn hoặc công thức vật lý/sinh học chính xác.',
+      '2. Giao diện hỗ trợ đầy đủ KaTeX + mhchem: sử dụng $...$ (inline), $$...$$ (block), \\ce{...} (phương trình hóa học), \\begin{aligned}...\\end{aligned} (thiết lập phản ứng nhiều bước/nhiều dòng), \\begin{pmatrix}...\\end{pmatrix} (ma trận), và [STRUCT: ...] (sơ đồ liên kết cấu tạo hóa học).',
       '3. Đặt 1 câu hỏi gợi mở ngắn gọn ở cuối câu trả lời theo phương pháp Socratic để khuyến khích học sinh tự thực nghiệm trên bàn Lab 2D, mô hình 3D hoặc chế độ AR.',
       '4. Trả lời bằng ngôn ngữ tương ứng với ngôn ngữ người dùng đang sử dụng (Tiếng Việt hoặc Tiếng Anh), trình bày rõ ràng với các gạch đầu dòng ngắn gọn, dễ đọc.',
       systemInstruction ? `\nHướng dẫn bổ sung: ${systemInstruction}` : '',
@@ -80,29 +80,29 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
       .filter(Boolean)
       .join('\n');
 
-    const sanitizedHistory = Array.isArray(history)
-      ? history
-          .filter(
-            (h) =>
-              h &&
-              (h.role === 'user' || h.role === 'model') &&
-              typeof h.text === 'string' &&
-              h.text.trim().length > 0
-          )
-          .slice(-16)
-          .map((h) => ({
-            role: h.role,
-            parts: [{ text: h.text }],
-          }))
-      : [];
+    const turns: Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }> = [];
+    if (Array.isArray(history)) {
+      for (const h of history.slice(-12)) {
+        if (!h || (h.role !== 'user' && h.role !== 'model') || typeof h.text !== 'string' || !h.text.trim()) {
+          continue;
+        }
+        if (turns.length === 0 && h.role === 'model') {
+          continue;
+        }
+        if (turns.length > 0 && turns[turns.length - 1].role === h.role) {
+          turns[turns.length - 1].parts[0].text += `\n${h.text.trim()}`;
+        } else {
+          turns.push({ role: h.role, parts: [{ text: h.text.trim() }] });
+        }
+      }
+    }
 
-    const contents = [
-      ...sanitizedHistory,
-      {
-        role: 'user' as const,
-        parts: [{ text: message }],
-      },
-    ];
+    if (turns.length > 0 && turns[turns.length - 1].role === 'user') {
+      turns[turns.length - 1].parts[0].text += `\n${message.trim()}`;
+    } else {
+      turns.push({ role: 'user', parts: [{ text: message.trim() }] });
+    }
+    const contents = turns;
 
     let usedModel = requestedModel;
     let responseText = '';

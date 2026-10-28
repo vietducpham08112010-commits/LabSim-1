@@ -38,7 +38,67 @@ async function startServer() {
 
   app.use(express.json({ limit: '1mb' }));
 
-  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat) — Locked to gemini-3.1-flash-lite for quota efficiency
+  // Helper to sanitize chat history so Gemini API strictly receives alternating user -> model turns starting with user
+  function normalizeGeminiChatContents(
+    rawHistory: unknown,
+    latestUserMessage: string
+  ): Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }> {
+    const turns: Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }> = [];
+
+    if (Array.isArray(rawHistory)) {
+      for (const item of (rawHistory as ChatTurn[]).slice(-8)) {
+        if (!item || typeof item.text !== 'string' || !item.text.trim()) continue;
+        const role: 'user' | 'model' = item.role === 'model' ? 'model' : 'user';
+        const cleanText = item.text.trim().slice(0, 600);
+        // Gemini requires the first turn in contents to be 'user'
+        if (turns.length === 0 && role === 'model') {
+          continue;
+        }
+        // Merge consecutive turns of the same role
+        if (turns.length > 0 && turns[turns.length - 1].role === role) {
+          turns[turns.length - 1].parts[0].text += `\n${cleanText}`;
+        } else {
+          turns.push({ role, parts: [{ text: cleanText }] });
+        }
+      }
+    }
+
+    const userText = String(latestUserMessage || '').trim().slice(0, 800);
+    if (turns.length > 0 && turns[turns.length - 1].role === 'user') {
+      turns[turns.length - 1].parts[0].text += `\n${userText}`;
+    } else {
+      turns.push({ role: 'user', parts: [{ text: userText }] });
+    }
+
+    return turns;
+  }
+
+  async function generateWithFallbackModels(
+    ai: GoogleGenAI,
+    contents: unknown,
+    config: Record<string, unknown>
+  ): Promise<{ text: string; modelUsed: string }> {
+    const candidateModels = [LITE_MODEL, 'gemini-3.8-flash', 'gemini-flash-latest'];
+    let lastErr: unknown = null;
+
+    for (const modelName of candidateModels) {
+      try {
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: contents as string,
+          config,
+        });
+        if (response && typeof response.text === 'string' && response.text.trim().length > 0) {
+          return { text: response.text.trim(), modelUsed: modelName };
+        }
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    throw lastErr || new Error('All Gemini model attempts failed');
+  }
+
+  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat)
   app.post('/api/chat', async (req, res) => {
     try {
       const {
@@ -63,53 +123,26 @@ async function startServer() {
       }
 
       const defaultSystemPrompt = [
-        'Bạn là Gia sư AI của phòng thí nghiệm ảo LabSim (Lý - Hóa - Sinh THPT GDPT 2018).',
-        'Trả lời ngắn gọn, súc tích (tối đa 4 gạch đầu dòng), nêu đúng phương trình/công thức trọng tâm và 1 câu hỏi gợi mở.',
-        systemInstruction ? `Lưu ý: ${systemInstruction}` : '',
-        labContext ? `Bàn Lab:\n${labContext}` : '',
+        'Bạn là Gia sư AI thông minh của phòng thí nghiệm ảo LabSim (Vật Lý - Hóa Học - Sinh Học THPT GDPT 2018).',
+        'Hãy trả lời trực tiếp, chính xác và linh hoạt đúng trọng tâm câu hỏi của học sinh (từ 3 đến 5 gạch đầu dòng rõ ràng).',
+        'Giao diện chat hỗ trợ đầy đủ KaTeX và mhchem: hãy sử dụng $...$ cho công thức nội dòng, $$...$$ cho công thức khối, \\ce{...} cho phương trình hóa học, \\begin{aligned}...\\end{aligned} cho hệ phản ứng/phương trình nhiều dòng, \\begin{pmatrix}...\\end{pmatrix} cho ma trận, và [STRUCT: CH3-CH=O] cho sơ đồ liên kết cấu tạo hữu cơ khi cần minh họa chuyên sâu.',
+        'Kết thúc bằng 1 câu hỏi gợi mở tư duy thực nghiệm ngắn gọn.',
+        systemInstruction ? `Lưu ý bổ sung: ${systemInstruction}` : '',
+        labContext ? `Trạng thái bàn thí nghiệm hiện tại:\n${labContext}` : '',
       ]
         .filter(Boolean)
         .join('\n');
 
-      // Keep only the last 6 turns and trim length to save input quota
-      const sanitizedHistory: Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }> =
-        Array.isArray(history)
-          ? (history as ChatTurn[])
-              .filter(
-                (h) =>
-                  h &&
-                  (h.role === 'user' || h.role === 'model') &&
-                  typeof h.text === 'string' &&
-                  h.text.trim().length > 0
-              )
-              .slice(-6)
-              .map((h) => ({
-                role: h.role,
-                parts: [{ text: h.text.slice(0, 500) }],
-              }))
-          : [];
+      const contents = normalizeGeminiChatContents(history, message);
 
-      const contents = [
-        ...sanitizedHistory,
-        {
-          role: 'user' as const,
-          parts: [{ text: message.slice(0, 600) }],
-        },
-      ];
-
-      const response = await ai.models.generateContent({
-        model: LITE_MODEL,
-        contents,
-        config: {
-          systemInstruction: defaultSystemPrompt,
-          temperature: 0.6,
-          maxOutputTokens: 360,
-        },
+      const { text, modelUsed } = await generateWithFallbackModels(ai, contents, {
+        systemInstruction: defaultSystemPrompt,
+        temperature: 0.65,
       });
 
       res.json({
-        text: response.text || '',
-        model: LITE_MODEL,
+        text,
+        model: modelUsed,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown Gemini Chat API error';
@@ -117,7 +150,7 @@ async function startServer() {
     }
   });
 
-  // 2. General Server-side Gemini API Proxy Endpoint (/api/gemini) — Locked to gemini-3.1-flash-lite
+  // 2. General Server-side Gemini API Proxy Endpoint (/api/gemini)
   app.post('/api/gemini', async (req, res) => {
     try {
       const {
@@ -141,9 +174,7 @@ async function startServer() {
         return;
       }
 
-      const config: Record<string, unknown> = {
-        maxOutputTokens: 360,
-      };
+      const config: Record<string, unknown> = {};
       if (systemInstruction) {
         config.systemInstruction = systemInstruction;
       }
@@ -153,27 +184,57 @@ async function startServer() {
 
       const contents =
         Array.isArray(history) && history.length > 0
-          ? [
-              ...history.slice(-6).map((h: ChatTurn) => ({
-                role: h.role === 'model' ? 'model' : 'user',
-                parts: [{ text: String(h.text || '').slice(0, 500) }],
-              })),
-              ...(prompt ? [{ role: 'user', parts: [{ text: String(prompt).slice(0, 600) }] }] : []),
-            ]
-          : String(prompt).slice(0, 800);
+          ? normalizeGeminiChatContents(history, String(prompt || ''))
+          : String(prompt).slice(0, 1200);
 
-      const response = await ai.models.generateContent({
-        model: LITE_MODEL,
-        contents,
-        config,
-      });
+      const { text, modelUsed } = await generateWithFallbackModels(ai, contents, config);
 
       res.json({
-        text: response.text || '',
-        model: LITE_MODEL,
+        text,
+        model: modelUsed,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown Gemini API error';
+      res.status(500).json({ error: message });
+    }
+  });
+
+  // 3. Universal DIY Sandbox Combination Analyzer (/api/sandbox-combine) for Out-of-Textbook Chemistry, Physics & Biology
+  app.post('/api/sandbox-combine', async (req, res) => {
+    try {
+      const { subject = 'CHEM', items = [] } = req.body || {};
+      if (!Array.isArray(items) || items.length === 0) {
+        res.status(400).json({ error: 'Missing items to combine' });
+        return;
+      }
+
+      const ai = getGeminiClient();
+      if (!ai) {
+        res.status(503).json({ error: 'SERVER_KEY_NOT_CONFIGURED' });
+        return;
+      }
+
+      const joined = items.join(' + ');
+      const prompt = `Phân tích kết quả thí nghiệm khi kết hợp [${joined}] trong phân môn ${subject} (Hóa học / Vật lý / Sinh học).
+Trả về JSON hợp lệ theo cấu trúc:
+{
+  "eq": "Phương trình phản ứng hoặc công thức vật lý/sinh học chuẩn (dùng chỉ số dưới/trên như H₂SO₄, Cu²⁺, ↓, ↑, ⇌)",
+  "desc": "Mô tả hiện tượng thực nghiệm chi tiết, rõ ràng bằng Tiếng Việt (1-2 câu)",
+  "color": "Mã màu hex hoặc rgba của dung dịch/hệ sau tương tác (VD: #38bdf8)",
+  "precipitateColor": "Mã màu hex của kết tủa nếu có hoặc chuỗi rỗng",
+  "gas": true/false,
+  "deltaT": số độ C thay đổi nhiệt độ (VD: 8 hoặc 0),
+  "pH": độ pH ước tính nếu là Hóa học (VD: 7.0)
+}`;
+
+      const { text } = await generateWithFallbackModels(ai, prompt, {
+        responseMimeType: 'application/json',
+        temperature: 0.3,
+      });
+
+      res.json({ result: JSON.parse(text) });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Sandbox synthesis failed';
       res.status(500).json({ error: message });
     }
   });
