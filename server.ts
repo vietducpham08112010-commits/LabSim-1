@@ -98,7 +98,7 @@ async function startServer() {
     throw lastErr || new Error('All Gemini model attempts failed');
   }
 
-  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat)
+  // 1. Multi-turn Gemini Chatbot Proxy Endpoint (/api/chat) with Automated Telemetry Trigger Support
   app.post('/api/chat', async (req, res) => {
     try {
       const {
@@ -106,6 +106,8 @@ async function startServer() {
         history = [],
         systemInstruction,
         labContext = '',
+        intentType = 'GENERAL',
+        telemetrySnapshot = null,
       } = req.body || {};
 
       if (!message || typeof message !== 'string') {
@@ -122,27 +124,47 @@ async function startServer() {
         return;
       }
 
+      const telemetryJsonBlock =
+        telemetrySnapshot && typeof telemetrySnapshot === 'object'
+          ? `Gói Telemetry tự động thời gian thực (Thông số hiện tại, Hóa chất/Học cụ đã chọn & Cảm biến trực tiếp):\n${JSON.stringify(telemetrySnapshot, null, 2)}`
+          : '';
+
+      const intentDirective =
+        intentType === 'EXPLAIN'
+          ? 'CHỈ THỊ TỰ ĐỘNG (EXPLAIN TRIGGER): Học sinh đang yêu cầu GIẢI THÍCH hiện tượng thực tế trên bàn thí nghiệm. BẮT BUỘC trích dẫn trực tiếp các thông số thực nghiệm hiện tại, các chất/học cụ đã chọn trong khay và số đo cảm biến thời gian thực trong gói Telemetry để giải thích bản chất cơ chế khoa học vì sao số đo cảm biến và hiện tượng đạt giá trị đó.'
+          : intentType === 'PREDICT'
+          ? 'CHỈ THỊ TỰ ĐỘNG (PREDICT TRIGGER): Học sinh đang yêu cầu DỰ ĐOÁN. BẮT BUỘC lấy các số đo cảm biến, thông số hiện tại và chất đã chọn trong gói Telemetry làm mốc chuẩn (baseline), sau đó tính toán định lượng và dự đoán chính xác sự dịch chuyển của các đại lượng cảm biến và hiện tượng nếu thay đổi thông số hoặc thêm tác nhân mới.'
+          : '';
+
       const defaultSystemPrompt = [
         'Bạn là Gia sư AI thông minh của phòng thí nghiệm ảo LabSim (Vật Lý - Hóa Học - Sinh Học THPT GDPT 2018).',
         'Hãy trả lời trực tiếp, chính xác và linh hoạt đúng trọng tâm câu hỏi của học sinh (từ 3 đến 5 gạch đầu dòng rõ ràng).',
         'Giao diện chat hỗ trợ đầy đủ KaTeX và mhchem: hãy sử dụng $...$ cho công thức nội dòng, $$...$$ cho công thức khối, \\ce{...} cho phương trình hóa học, \\begin{aligned}...\\end{aligned} cho hệ phản ứng/phương trình nhiều dòng, \\begin{pmatrix}...\\end{pmatrix} cho ma trận, và [STRUCT: CH3-CH=O] cho sơ đồ liên kết cấu tạo hữu cơ khi cần minh họa chuyên sâu.',
         'Kết thúc bằng 1 câu hỏi gợi mở tư duy thực nghiệm ngắn gọn.',
+        intentDirective,
         systemInstruction ? `Lưu ý bổ sung: ${systemInstruction}` : '',
         labContext ? `Trạng thái bàn thí nghiệm hiện tại:\n${labContext}` : '',
+        telemetryJsonBlock,
       ]
         .filter(Boolean)
         .join('\n');
 
-      const contents = normalizeGeminiChatContents(history, message);
+      const enrichedMessage =
+        (intentType === 'EXPLAIN' || intentType === 'PREDICT') && telemetryJsonBlock
+          ? `[TỰ ĐỘNG ĐỒNG BỘ DỮ LIỆU THÍ NGHIỆM — ${intentType}]:\n${labContext || telemetryJsonBlock}\n\n[CÂU HỎI CỦA HỌC SINH]: ${message}`
+          : message;
+
+      const contents = normalizeGeminiChatContents(history, enrichedMessage);
 
       const { text, modelUsed } = await generateWithFallbackModels(ai, contents, {
         systemInstruction: defaultSystemPrompt,
-        temperature: 0.65,
+        temperature: 0.6,
       });
 
       res.json({
         text,
         model: modelUsed,
+        intentType,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown Gemini Chat API error';
